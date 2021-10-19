@@ -48,7 +48,7 @@ class UserController extends Controller
                 'avatar' => 'nullable|string',
                 'address' => 'nullable|string',
                 'email' => 'string|required|unique:users',
-                'telehphone' => 'nullalbe|string|max:20',
+                'telephone' => 'nullalbe|string|max:20',
                 'role' => 'required|in:admin,employee,customer',
                 'status' => 'required|in:active,inactive',
             ]
@@ -105,7 +105,7 @@ class UserController extends Controller
             'avatar' => 'nullable|string',
             'address' => 'nullable|string',
             'email' => 'string|required',
-            'telehphone' => 'nullalbe|string|max:20',
+            'telephone' => 'nullalbe|string|max:20',
             'role' => 'required|in:admin,employee,customer',
             'status' => 'required|in:active,inactive',
         ]);
