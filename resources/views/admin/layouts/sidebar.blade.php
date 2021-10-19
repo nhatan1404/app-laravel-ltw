@@ -37,6 +37,11 @@
       <i class="far fa-list-alt"></i>
       <span>Danh Mục</span></a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{route('user.index')}}">
+      <i class="fas fa-users"></i>
+      <span>Tài Khoản</span></a>
+  </li>
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">

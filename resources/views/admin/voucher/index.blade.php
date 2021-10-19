@@ -52,11 +52,11 @@
                 @endif
               </td>
               <td>
-                <a href="{{route('voucher.edit',$voucher->id)}}" class="btn btn-warning btn-sm float-left mr-1 btn-action" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                <a href="{{route('voucher.edit',$voucher->id)}}" class="btn btn-info btn-sm float-left mr-1 btn-action" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                 <form method="POST" action="{{route('voucher.destroy',[$voucher->id])}}">
                   @csrf
                   @method('delete')
-                  <button class="btn btn-danger btn-sm dltBtn btn-action" data-id="{{$voucher->id}}" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                  <button class="btn btn-danger btn-sm btn-action" data-id="{{$voucher->id}}" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                 </form>
               </td>
             </tr>

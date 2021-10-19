@@ -33,11 +33,11 @@
               <td>{{$category->slug}}</td>
               </td>
               <td>
-                <a href="{{route('category.edit',$category->id)}}" class="btn btn-warning btn-sm float-left mr-1 btn-action" data-toggle="tooltip" title="Sửa" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                <a href="{{route('category.edit',$category->id)}}" class="btn btn-info btn-sm float-left mr-1 btn-action" data-toggle="tooltip" title="Sửa" data-placement="bottom"><i class="fas fa-edit"></i></a>
                 <form method="POST" action="{{route('category.destroy',[$category->id])}}">
                   @csrf
                   @method('delete')
-                  <button class="btn btn-danger btn-sm dltBtn btn-action" data-id="{{$category->id}}" data-toggle="tooltip" data-placement="bottom" title="Xoá"><i class="fas fa-trash-alt"></i></button>
+                  <button class="btn btn-danger btn-sm btn-action" data-id="{{$category->id}}" data-toggle="tooltip" data-placement="bottom" title="Xoá"><i class="fas fa-trash-alt"></i></button>
                 </form>
               </td>
             </tr>
