@@ -42,11 +42,13 @@ class UserController extends Controller
             [
                 'firstname' => 'string|required|max:50',
                 'lastname' => 'string|required|max:50',
-                'email' => 'string|required|unique:users',
                 'password' => 'string|required',
+                'avatar' => 'nullable|string',
+                'address' => 'nullable|string',
+                'email' => 'string|required|unique:users',
+                'telehphone' => 'nullalbe|string|max:20',
                 'role' => 'required|in:admin,employee,customer',
                 'status' => 'required|in:active,inactive',
-                'avatar' => 'nullable|string'
             ]
         );
         $data = $request->all();
@@ -96,11 +98,13 @@ class UserController extends Controller
         $this->validate($request, [
             'firstname' => 'string|required|max:50',
             'lastname' => 'string|required|max:50',
-            'email' => 'string|required|unique:users',
             'password' => 'string|required',
+            'avatar' => 'nullable|string',
+            'address' => 'nullable|string',
+            'email' => 'string|required|unique:users',
+            'telehphone' => 'nullalbe|string|max:20',
             'role' => 'required|in:admin,employee,customer',
             'status' => 'required|in:active,inactive',
-            'avatar' => 'nullable|string'
         ]);
         $data = $request->all();
         $status = $user->fill($data)->save();
