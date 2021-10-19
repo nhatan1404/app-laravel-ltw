@@ -46,7 +46,7 @@ class UserController extends Controller
                 'password' => 'string|required',
                 'role' => 'required|in:admin,employee,customer',
                 'status' => 'required|in:active,inactive',
-                'avatar' => 'nullable|string',
+                'avatar' => 'nullable|string'
             ]
         );
         $data = $request->all();
@@ -55,9 +55,9 @@ class UserController extends Controller
         if ($status) {
             request()->session()->flash('success', 'Tạo tài khoản thành công.');
         } else {
-            request()->session()->flash('error', 'Error occurred while adding user');
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
         }
-        return redirect()->route('users.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -77,9 +77,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -89,9 +90,26 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $this->validate($request, [
+            'firstname' => 'string|required|max:50',
+            'lastname' => 'string|required|max:50',
+            'email' => 'string|required|unique:users',
+            'password' => 'string|required',
+            'role' => 'required|in:admin,employee,customer',
+            'status' => 'required|in:active,inactive',
+            'avatar' => 'nullable|string'
+        ]);
+        $data = $request->all();
+        $status = $user->fill($data)->save();
+        if ($status) {
+            request()->session()->flash('success', 'Cập nhật tài khoản thành công.');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
+        return redirect()->route('user.index');
     }
 
     /**
@@ -100,8 +118,15 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::findorFail($id);
+        $status = $user->delete();
+        if ($status) {
+            request()->session()->flash('success', 'Xoá tài khoản thành công.');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
+        return redirect()->route('user.index');
     }
 }
