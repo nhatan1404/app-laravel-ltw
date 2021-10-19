@@ -81,7 +81,7 @@
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label for="role" class="col-form-label">Role</label>
+                <label for="role" class="col-form-label">Chức Vụ:</label>
                 <select name="role" class="form-control">
                   <option value="">Chọn chức vụ</option>
                   <option value="admin">Admin</option>
