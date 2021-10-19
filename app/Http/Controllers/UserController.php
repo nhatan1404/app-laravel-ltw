@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Libraries\General;
 
 class UserController extends Controller
 {
@@ -82,7 +83,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.user.edit', compact('user'));
+        $roles = General::getEnumValues('users', 'role');
+        return view('admin.user.edit', compact('user', a 'roles'));
     }
 
     /**
