@@ -104,7 +104,7 @@ class UserController extends Controller
             'password' => 'string|required',
             'avatar' => 'nullable|string',
             'address' => 'nullable|string',
-            'email' => 'string|required|unique:users',
+            'email' => 'string|required',
             'telehphone' => 'nullalbe|string|max:20',
             'role' => 'required|in:admin,employee,customer',
             'status' => 'required|in:active,inactive',
