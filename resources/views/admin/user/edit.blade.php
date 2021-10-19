@@ -45,7 +45,7 @@
             <div class="col">
               <div class="form-group">
                 <label for="inputTelephone" class="col-form-label">Điện Thoại:</label>
-                <input id="inputTelephone" type="text" name="phone" placeholder="Nhập số điện thoại" value="{{$user->telephone}}" class="form-control">
+                <input id="inputTelephone" type="text" name="telephone" placeholder="Nhập số điện thoại" value="{{$user->telephone}}" class="form-control">
                 @error('telephone')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
@@ -62,17 +62,17 @@
           </div>--}}
 
           <div class="form-group">
-            <label for="inputPhoto" class="col-form-label">Photo</label>
+            <label for="inputAvatar" class="col-form-label">Ảnh Đại Diện: </label>
             <div class="input-group">
               <span class="input-group-btn">
-                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                  <i class="fa fa-picture-o"></i> Choose
+                <a id="lfm" data-input="inputAvatar" data-preview="holder" class="btn btn-primary">
+                  <i class="fas fa-upload"></i> Chọn
                 </a>
               </span>
-              <input id="thumbnail" class="form-control" type="text" name="photo" value="{{$user->avatar}}">
+              <input id="inputAvatar" class="form-control" type="text" name="avatar" value="{{$user->avatar}}">
             </div>
             <img id="holder" style="margin-top:15px;max-height:100px;">
-            @error('photo')
+            @error('avatar')
             <span class="text-danger">{{$message}}</span>
             @enderror
           </div>

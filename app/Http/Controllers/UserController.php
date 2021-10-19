@@ -48,7 +48,7 @@ class UserController extends Controller
                 'avatar' => 'nullable|string',
                 'address' => 'nullable|string',
                 'email' => 'string|required|unique:users',
-                'telephone' => 'nullalbe|string|max:20',
+                'telephone' => 'nullable|string|max:20',
                 'role' => 'required|in:admin,employee,customer',
                 'status' => 'required|in:active,inactive',
             ]
@@ -101,11 +101,11 @@ class UserController extends Controller
         $this->validate($request, [
             'firstname' => 'string|required|max:50',
             'lastname' => 'string|required|max:50',
-            'password' => 'string|required',
+            //password' => 'string|required',
             'avatar' => 'nullable|string',
             'address' => 'nullable|string',
             'email' => 'string|required',
-            'telephone' => 'nullalbe|string|max:20',
+            'telephone' => 'nullable|string|max:20',
             'role' => 'required|in:admin,employee,customer',
             'status' => 'required|in:active,inactive',
         ]);
