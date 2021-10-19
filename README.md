@@ -7,3 +7,8 @@
 -   Tống Khánh Nhật An
 -   Võ Ngọc Bội
 -   Đặng Phước Lộc
+
+### Thông tin đăng nhập hệ thống
+
+-   username: admin@gmail.com
+-   password: 12345678
