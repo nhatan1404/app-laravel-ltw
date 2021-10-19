@@ -27,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $roles = General::getEnumValues('users', 'role');
+        return view('admin.user.create', compact('roles'));
     }
 
     /**

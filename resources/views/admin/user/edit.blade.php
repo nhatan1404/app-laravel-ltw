@@ -53,13 +53,13 @@
             </div>
           </div>
 
-          <!-- <div class="form-group">
+          {{-- <div class="form-group">
             <label for="inputPassword" class="col-form-label">Password</label>
             <input id="inputPassword" type="password" name="password" placeholder="Enter password" value="{{$user->password}}" class="form-control">
             @error('password')
             <span class="text-danger">{{$message}}</span>
             @enderror
-          </div> -->
+          </div>--}}
 
           <div class="form-group">
             <label for="inputPhoto" class="col-form-label">Photo</label>
@@ -76,42 +76,16 @@
             <span class="text-danger">{{$message}}</span>
             @enderror
           </div>
-          @php
-          $roles=DB::table('users')->select('role')->where('id',$user->id)->get();
-          // dd($roles);
-          @endphp
-          <div class="form-group">
-            <label for="role" class="col-form-label">Role</label>
-            <select name="role" class="form-control">
-              <option value="">-----Select Role-----</option>
-              @foreach($roles as $role)
-              <option value="{{$role->role}}" {{(($role->role=='admin') ? 'selected' : '')}}>Admin</option>
-              <option value="{{$role->role}}" {{(($role->role=='user') ? 'selected' : '')}}>User</option>
-              @endforeach
-            </select>
-            @error('role')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-          </div>
-          <div class="form-group">
-            <label for="status" class="col-form-label">Status</label>
-            <select name="status" class="form-control">
-              <option value="active" {{(($user->status=='active') ? 'selected' : '')}}>Active</option>
-              <option value="inactive" {{(($user->status=='inactive') ? 'selected' : '')}}>Inactive</option>
-            </select>
-            @error('status')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-          </div>
+         
           <div class="row">
             <div class="col">
               <div class="form-group">
                 <label for="role" class="col-form-label">Chức Vụ:</label>
                 <select name="role" class="form-control">
                   <option value="">Chọn chức vụ</option>
-                  <option value="admin" {{(($role->role=='admin') ? 'selected' : '')}}>Admin</option>
-                  <option value="employee" {{(($role->role=='employee') ? 'selected' : '')}}>Nhân Viên</option>
-                  <option value="customer" {{(($role->role=='customer') ? 'selected' : '')}}>Khách Hàng</option>
+                  @foreach($roles as $role)
+                  <option value="{{$role}}" {{(($user->role == $role) ? 'selected' : '')}}>{{ucwords($role)}}</option>
+                  @endforeach
                 </select>
                 @error('role')
                 <span class="text-danger">{{$message}}</span>
