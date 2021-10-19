@@ -84,7 +84,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $roles = General::getEnumValues('users', 'role');
-        return view('admin.user.edit', compact('user', a 'roles'));
+        return view('admin.user.edit', compact('user', 'roles'));
     }
 
     /**
