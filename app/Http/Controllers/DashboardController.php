@@ -10,4 +10,8 @@ class DashboardController extends Controller
     {
         return view('admin.home');
     }
+
+    public function fileManager() {
+        return view('admin.file-manager.index');
+    }
 }

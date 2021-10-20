@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard.index')}}">
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-laugh-wink"></i>
     </div>
@@ -13,7 +13,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="{{route('dashboard.index')}}  ">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
   </li>
@@ -29,7 +29,7 @@
   <!-- Nav Itemm - Category Collapse Menu -->
   <li class="nav-item">
     <a class="nav-link" href="{{route('voucher.index')}}">
-      <i class="fas fa-table"></i>
+      <i class="fas fa-file-invoice-dollar"></i>
       <span>Mã Giảm Giá</span></a>
   </li>
   <li class="nav-item">
@@ -42,7 +42,11 @@
       <i class="fas fa-users"></i>
       <span>Tài Khoản</span></a>
   </li>
-
+  <li class="nav-item">
+    <a class="nav-link" href="{{route('file-manager')}}">
+      <i class="fas fa-folder-open"></i>
+      <span>Quản Lý Tập Tin</span></a>
+  </li>
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
   <!-- Sidebar Toggler (Sidebar) -->

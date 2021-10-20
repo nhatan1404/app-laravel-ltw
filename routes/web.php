@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,9 @@ Route::get('/', 'HomeController@index');
 Route::get('/category', 'CategoryController@index');
 
 
-Route::prefix('dashboard')->group(function () {
+Route::group(['prefix' => '/dashboard', 'middleware' => ['auth']], function () {
     Route::get('/', 'DashboardController@index')->name(('dashboard.index'));
+    Route::get('/file-manager', 'DashboardController@fileManager')->name('file-manager');
     Route::resources([
         'category' => 'CategoryController',
         'voucher' => 'VoucherController',

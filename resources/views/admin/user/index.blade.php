@@ -36,8 +36,8 @@
               </td>
               <td>
                 <div class="d-flex align-items-center">
-                  @if($user->photo)
-                  <img class="rounded-circle" src="{{$user->photo}}" style="max-width:50px" alt="{{$user->photo}}">
+                  @if($user->avatar)
+                  <img class="rounded-circle" src="{{$user->avatar}}" style="max-width:50px" alt="{{$user->photo}}">
                   @else
                   <img class="rounded-circle" src="{{asset('/images/default-avatar.png')}}" style="max-width:50px" alt="Avatar">
                   @endif
