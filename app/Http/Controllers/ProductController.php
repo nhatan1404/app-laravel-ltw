@@ -79,8 +79,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $status = $product->delete();
+
+        if ($status) {
+            request()->session()->flash('success', 'Xoá sản phẩm thành công.');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
     }
 }
