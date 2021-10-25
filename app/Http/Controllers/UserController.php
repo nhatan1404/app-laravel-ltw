@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Libraries\General;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'ASC')->paginate(10);
+        $role = Auth::user()->role;
+        $users = $role == 'admin' ? User::orderBy('id', 'ASC')->paginate(10) : User::where('role', 'customer')->orderBy('id', 'ASC')->paginate(10);
         return view('admin.user.index', compact('users'));
     }
 

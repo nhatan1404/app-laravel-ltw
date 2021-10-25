@@ -36,7 +36,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+
+        ]);
     }
 
     /**
@@ -47,7 +49,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+       //
     }
 
     /**
