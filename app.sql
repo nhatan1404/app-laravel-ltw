@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2021 at 03:45 AM
+-- Generation Time: Oct 25, 2021 at 01:44 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -186,6 +186,7 @@ CREATE TABLE `users` (
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `telephone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `role` enum('admin','employee','customer') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'customer',
+  `status` enum('active','inactive') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -196,8 +197,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `avatar`, `address`, `email`, `telephone`, `role`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'An', 'Nhật', '$2y$10$KGDnNj/0QKEZmW.1k6fYBODEZA72/.0AwWA4/YuL1lWLFkEZ05OFq', NULL, NULL, 'admin@gmail.com', NULL, 'admin', NULL, NULL, '2021-10-17 21:51:41', '2021-10-17 21:51:41');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `avatar`, `address`, `email`, `telephone`, `role`, `status`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'An', 'Nhật', '$2y$10$KGDnNj/0QKEZmW.1k6fYBODEZA72/.0AwWA4/YuL1lWLFkEZ05OFq', '//127.0.0.1:8000/storage/photos/1/android-chrome-512x512.png', NULL, 'admin@gmail.com', '0901234567', 'admin', 'active', NULL, NULL, '2021-10-17 21:51:41', '2021-10-19 19:39:08'),
+(2, 'Lộc', 'Đặng Phước', '$2y$10$bh/aQDQL31qFsY.VjUsD3OHY1PqulHINWYCH4W0sWArsQglLDCkvK', NULL, NULL, 'phuocloc@gmail.com', NULL, 'employee', 'active', NULL, NULL, '2021-10-19 01:38:47', '2021-10-19 01:38:47'),
+(3, 'Bội', 'Võ Ngọc', '$2y$10$0NUasO/jLkxZKf.rmFxNme33OS/NVBJG8vRxwq715pVHAVML0LHne', NULL, NULL, 'ngocboi@gmail.com', NULL, 'customer', 'inactive', NULL, NULL, '2021-10-19 06:30:01', '2021-10-19 06:30:01'),
+(4, 'An', 'Tống Khánh Nhật', '$2y$10$fUfkYSRCwqJ5vpjDy2CeUuVheoTyeyQf6e.WySo8qWaSXFjepC076', '//127.0.0.1:8000/storage/photos/1/android-chrome-512x512.png', NULL, 'nhatan@email.com', NULL, 'admin', 'active', NULL, NULL, '2021-10-19 06:58:36', '2021-10-19 19:20:51');
 
 -- --------------------------------------------------------
 
@@ -221,7 +225,7 @@ CREATE TABLE `vouchers` (
 
 INSERT INTO `vouchers` (`id`, `code`, `type`, `value`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Mã 01', 'fixed', 10000, 'active', '2021-10-16 20:35:33', '2021-10-16 20:35:33'),
-(2, 'Mã 01011', 'percent', 10, 'inactive', '2021-10-16 20:37:54', '2021-10-16 20:53:07');
+(2, 'Mã 01011', 'percent', 10, 'active', '2021-10-16 20:37:54', '2021-10-19 07:32:01');
 
 --
 -- Indexes for dumped tables
@@ -338,7 +342,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vouchers`
