@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -37,8 +38,33 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-
+            'title' => 'string|required',
+            'description' => 'string|required',
+            'quantity' => 'integer|required',
+            'status' => 'required:|in:active,inactive',
+            'images' => 'string|required',
+            'price' => 'required|numeric',
+            'sold' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
+            'category_id' => 'required|exists:categories,id'
         ]);
+
+        $data = $request->all();
+        $slug = Str::Slug($request->title);
+        $count = Product::where('slug', $slug)->count();
+
+        if ($count > 0) {
+            $slug += '-' . $count;
+        }
+
+        $data['slug'] = $slug;
+        $status = Product::create($data);
+        if ($status) {
+            request()->session->flash('success', 'Tạo sản phẩm thành công');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
+        return redirect()->route('product.index');
     }
 
     /**
@@ -49,7 +75,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-       //
+        //
     }
 
     /**
@@ -58,9 +84,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        return view('admin.product.edit');
+        $product = Product::findOrFail($id);
+        return view('admin.product.edit', compact('product'));
     }
 
     /**
@@ -70,9 +97,29 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $this->validate($request, [
+            'title' => 'string|required',
+            'description' => 'string|required',
+            'quantity' => 'integer|required',
+            'status' => 'required:|in:active,inactive',
+            'images' => 'string|required',
+            'price' => 'required|numeric',
+            'sold' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+
+        $data = $request->all();
+        $status = $product->fill($data)->save();
+        if ($status) {
+            request()->session()->flash('success', 'Cập nhật sản phẩm thành công');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
+        return redirect()->route('product.index');
     }
 
     /**
