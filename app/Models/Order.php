@@ -9,4 +9,5 @@ class Order extends Model
 {
     use HasFactory;
     protected $table = 'order';
+    protected $fillable = ['firstname', 'lastname', 'address', 'telephone', 'email', 'note', 'tottal'];
 }
