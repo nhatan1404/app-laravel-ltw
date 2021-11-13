@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -13,7 +15,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Posts::orderBy('id', 'DESC')->paginate(15);
+        return view('admin.posts.index');
     }
 
     /**
@@ -23,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -34,7 +37,34 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(
+            $request,
+            [
+                'title' => 'string|required',
+                'description' => 'string|required',
+                'content' => 'string|required',
+                'thumbnail' => 'string|required',
+                'user_id' => 'required|exists:users,id'
+            ]
+        );
+
+        $data = $request->all();
+        $slug = Str::slug($data['title']);
+
+        $count = Posts::where('slug', $slug)->count();
+
+        if ($count > 0) {
+            $slug += '-' + $count;
+        }
+
+        $data['slug'] = $slug;
+        $status = Posts::create($data);
+        if ($status) {
+            request()->session()->flash('success', 'Tạo bài viết thành công');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -56,7 +86,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $posts = Posts::findOrFail($id);
+        return view('posts.edit', compact('posts'));
     }
 
     /**
@@ -68,7 +99,27 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $posts = Posts::findOrFail($id);
+        $this->validate(
+            $request,
+            [
+                'title' => 'string|required',
+                'description' => 'string|required',
+                'content' => 'string|required',
+                'thumbnail' => 'string|required',
+                'user_id' => 'required|exists:users,id'
+            ]
+        );
+
+        $data = $request->all();
+
+        $status = $posts->fill($data)->save();
+        if ($status) {
+            request()->session()->flash('success', 'Cập nhật bài viết thành công');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -79,6 +130,13 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $posts = Posts::findOrFail($id);
+        $status = $posts->delete();
+
+        if ($status) {
+            request()->session()->flash('success', 'Đã xoá bài viết thành công');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
     }
 }
