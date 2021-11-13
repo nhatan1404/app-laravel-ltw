@@ -23,6 +23,36 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('shop.home');
+    }
+
+    public function about()
+    {
+        return view('shop.about.index');
+    }
+
+    public function contact()
+    {
+        return view('shop.contact.index');
+    }
+
+    public function productList()
+    {
+        return view('shop.product.list');
+    }
+
+    public function productDetail($slug)
+    {
+        return view('shop.product.detail');
+    }
+
+    public function postSList()
+    {
+        return view('shop.product.list');
+    }
+
+    public function postsDetail($slug)
+    {
+        return view('shop.product.detail');
     }
 }
