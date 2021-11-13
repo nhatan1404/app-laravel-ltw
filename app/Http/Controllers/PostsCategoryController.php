@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PostsCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostsCategoryController extends Controller
 {
@@ -13,7 +15,8 @@ class PostsCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $posts_categories = PostsCategory::orderBy('id', 'DESC')->paginate(15);
+        return view('admin.posts-category.index', compact('posts_categories'));
     }
 
     /**
@@ -23,7 +26,7 @@ class PostsCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts-category.create');
     }
 
     /**
@@ -34,7 +37,28 @@ class PostsCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'string|required',
+            'parent_id' => 'exists:posts_categories,id'
+        ]);
+
+        $data = $request->all();
+        $slug = Str::slug($data['title']);
+
+        $count = PostsCategory::where('slug', $slug)->count();
+
+        if ($count > 0) {
+            $slug += '-' + $count;
+        }
+
+        $data['slug'] = $slug;
+        $status = PostsCategory::create($data);
+        if ($status) {
+            request()->session()->flash('success', 'Tạo danh mục bài viết thành công');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
+        return redirect()->route('posts-category.index');
     }
 
     /**
@@ -56,7 +80,8 @@ class PostsCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $posts_categories = PostsCategory::findOrFail($id);
+        return view('admin.posts-category.edit', compact('posts_categories'));
     }
 
     /**
@@ -68,7 +93,21 @@ class PostsCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $posts_categories = PostsCategory::findOrFail($id);
+        $this->validate($request, [
+            'title' => 'string|required',
+            'parent_id' => 'exists:posts_categories,id'
+        ]);
+
+        $data = $request->all();
+
+        $status = $posts_categories->fill($data)->save();
+        if ($status) {
+            request()->session()->flash('success', 'Cập nhật danh mục bài viết thành công');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
+        return redirect()->route('posts-category.index');
     }
 
     /**
@@ -79,6 +118,12 @@ class PostsCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $posts_categories = PostsCategory::findOrFail($id);
+        $status = $posts_categories->delete();
+        if ($status) {
+            request()->session()->flash('success', 'Đã xoá danh mục bài viết thành công');
+        } else {
+            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        }
     }
 }
