@@ -2,114 +2,43 @@
 @section('title', 'Sửa Bài Viết')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-10 mx-auto">
-            <div class="card">
-                <h5 class="card-header">Tạo Bài Viết</h5>
-                <div class="card-body">
-                    <form method="post" action="{{ route('posts.update', $posts->id) }}">
-                        @csrf
-                        @method('PATCH')
-                        <div class="form-group">
-                            <label for="inputTitle" class="col-form-label">Tiêu đề: <span
-                                    class="text-danger">*</span></label>
-                            <input id="inputTitle" type="text" name="title" placeholder="Nhập tiêu đề"
-                                value="{{ $posts->title }}" class="form-control">
-                            @error('title')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+    <x-Admin.Form.Edit name="Bài Viết" route="posts.update" :id="$posts->id">
+        <x-Admin.Form.Input name="Tiêu đề" property="title" placeholder="Nhập tiêu đề" value="{{ $posts->title }}" />
 
-                        <div class="form-group">
-                            <label for="inputDescription" class="col-form-label">Mô tả:</label>
-                            <textarea class="form-control" id="inputDescription" placeholder="Nhập mô tả"
-                                name="description">{{ $posts->description }}</textarea>
-                            @error('description')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+        <x-Admin.Form.Textarea name=" Mô tả" property="description" placeholder="" value="{{ $posts->description }}"
+            placeholder="Nhập mô tả" />
 
-                        <div class="form-group">
-                            <label for="inputContent" class="col-form-label">Nội dung: </label>
-                            <textarea class="form-control" id="inputContent" rows="10" placeholder="Nhập nội dung"
-                                name="content">{{ $posts->content }}</textarea>
-                            @error('content')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+        <x-Admin.Form.Textarea name="Nội dung" property="content" placeholder="" value="{{ $posts->content }}"
+            placeholder="Nhập nội dung" rows="10" />
 
-                        <div class="form-group">
-                            <label for="inputCategory">Danh mục: <span class="text-danger">*</span></label>
-                            <select name="category_id" id="inputCategory" class="form-control">
-                                <option value="">Chọn danh mục</option>
-                                @foreach ($categories as $parent)
-                                    <optgroup label="{{ $parent->title }}">
-                                        @foreach ($parent->children as $children)
-                                            <option value="{{ $children->id }}"
-                                                {{ $posts->category->id == $children->id ? ' selected' : '' }}>
-                                                {{ $children->title }}</option>
-                                        @endforeach
-                                    </optgroup>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+        <x-Admin.Form.Select name="Danh mục" property="category_id">
+            @foreach ($categories as $parent)
+                <optgroup label="{{ $parent->title }}">
+                    @foreach ($parent->children as $children)
+                        <option value="{{ $children->id }}"
+                            {{ $posts->category->id == $children->id ? ' selected' : '' }}>
+                            {{ $children->title }}</option>
+                    @endforeach
+                </optgroup>
+            @endforeach
+        </x-Admin.Form.Select>
 
-                        <div class="form-group">
-                            <label for="added_by">Tác giả:</label>
-                            <select name="user_id" class="form-control">
-                                <option value="">Chọn tác giả</option>
-                                @foreach ($users as $key => $data)
-                                    <option value='{{ $data->id }}'
-                                        {{ $data->id == $posts->author->id ? 'selected' : '' }}>
-                                        {{ $data->fullname }}</option>
-                                @endforeach
-                            </select>
-                            @error('user_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+        <x-Admin.Form.Select name="Tác giả" property="user_id">
+            @foreach ($users as $key => $data)
+                <option value='{{ $data->id }}' {{ $data->id == $posts->author->id ? 'selected' : '' }}>
+                    {{ $data->fullname }}</option>
+            @endforeach
+        </x-Admin.Form.Select>
 
-                        <div class="form-group">
-                            <label for="inputThumbnail" class="col-form-label">Thumbnail:</label>
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <a id="lfm" data-input="inputThumbnail" data-preview="holder" class="btn btn-primary">
-                                        <i class="fas fa-upload"></i> Chọn
-                                    </a>
-                                </span>
-                                <input id="inputThumbnail" class="form-control" type="text" name="thumbnail"
-                                    value="{{ $posts->thumbnail }}">
-                            </div>
-                            <img id="holder" style="margin-top:15px;max-height:100px;">
-                            @error('thumbnail')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+        <x-Admin.Form.InputImage name="Thumbnail" property="thumbnail" :value="$posts->thumbnail"/>
 
-                        <div class="form-group">
-                            <label for="status" class="col-form-label">Trạng thái: <span
-                                    class="text-danger">*</span></label>
-                            <select name="status" class="form-control">
-                                <option value="active" {{ $posts->status == 'active' ? ' selected' : '' }}>Hiển thị
-                                </option>
-                                <option value="inactive" {{ $posts->status == 'inactive' ? ' selected' : '' }}>Ẩn
-                                </option>
-                            </select>
-                            @error('status')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <button class="btn btn-success" type="submit">Cập nhật</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+        <x-Admin.Form.Select name="Trạng thái" property="status">
+            <option value="active" {{ $posts->status == 'active' ? ' selected' : '' }}>Hiển thị
+            </option>
+            <option value="inactive" {{ $posts->status == 'inactive' ? ' selected' : '' }}>Ẩn
+            </option>
+        </x-Admin.Form.Select>
+    </x-Admin.Form.Edit>
 @endsection
 
 @push('scripts')
