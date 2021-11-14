@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Posts;
+use App\Models\PostsCategory;
 
 class HomeController extends Controller
 {
@@ -38,21 +42,25 @@ class HomeController extends Controller
 
     public function productList()
     {
-        return view('shop.product.list');
+        $products = Product::all();
+        return view('shop.product.list', compact('products'));
     }
 
     public function productDetail($slug)
     {
-        return view('shop.product.detail');
+        $product = Product::findorFail($slug);
+        return view('shop.product.detail', compact('product'));
     }
 
     public function postSList()
     {
-        return view('shop.product.list');
+        $posts = Posts::all();
+        return view('shop.posts.list', compact('posts'));
     }
 
     public function postsDetail($slug)
     {
-        return view('shop.product.detail');
+        $post = Posts::getBySlug($slug);
+        return view('shop.posts.detail', compact('post'));
     }
 }
