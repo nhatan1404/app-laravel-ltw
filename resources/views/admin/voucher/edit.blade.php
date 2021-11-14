@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+@section('title', 'Sửa Mã Giảm Giá')
 @section('content')
 <div class="row">
   <div class="col-lg-10 mx-auto">
