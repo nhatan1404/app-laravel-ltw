@@ -8,14 +8,10 @@
         <x-Admin.Form.Textarea name=" Mô tả" property="description" placeholder="" value="{{ old('description') }}"
             placeholder="Nhập mô tả" />
 
-        <div class="form-group {{ count($parentCategories) == 0 ? 'd-none' : '' }}">
-            <label for="parent_id">Danh Mục Lớn: <small>(tuỳ chọn)</small></label>
-            <select name="parent_id" class="form-control">
-                <option value="">Chọn danh mục</option>
-                @foreach ($parentCategories as $key => $parentCategory)
-                    <option value='{{ $parentCategory->id }}'>{{ $parentCategory->title }}</option>
-                @endforeach
-            </select>
-        </div>
+        <x-Admin.Form.Select name="Danh mục cha" property="parent_id">
+            @foreach ($parent_categories as $key => $parent_category)
+                <option value='{{ $parent_category->id }}'>{{ $parent_category->title }}</option>
+            @endforeach
+        </x-Admin.Form.Select>
     </x-Admin.Form.Create>
 @endsection
