@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -26,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $categories = Category::getListByParent();   
+        return view('admin.product.create', compact('categories'));
     }
 
     /**
@@ -44,7 +46,6 @@ class ProductController extends Controller
             'status' => 'required:|in:active,inactive',
             'images' => 'string|required',
             'price' => 'required|numeric',
-            'sold' => 'nullable|numeric',
             'discount' => 'nullable|numeric',
             'category_id' => 'required|exists:categories,id'
         ]);
@@ -60,7 +61,7 @@ class ProductController extends Controller
         $data['slug'] = $slug;
         $status = Product::create($data);
         if ($status) {
-            request()->session->flash('success', 'Tạo sản phẩm thành công');
+            request()->session()->flash('success', 'Tạo sản phẩm thành công');
         } else {
             request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
         }
@@ -87,7 +88,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.product.edit', compact('product'));
+        $categories = Category::getListByParent(); 
+        return view('admin.product.edit', compact('product', 'categories'));
     }
 
     /**
