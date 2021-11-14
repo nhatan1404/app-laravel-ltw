@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/login', 'HomeController@contact')->name('login');
+Route::get('/register', 'HomeController@contact')->name('register');
+Route::get('/profile/{id}', 'HomeController@contact')->name('profile');
+Route::get('/product', 'HomeController@productList')->name('product-list');
+Route::get('/product/{slug}', 'HomeController@productDetail')->name('product-detail');
+Route::get('/posts', 'HomeController@postsList')->name('posts-list');
+Route::get('/posts/{slug}', 'HomeController@postsDetail')->name('posts-detail');
+Route::get('/checkout', 'HomeController@postsDetail')->name('checkout');
 
 
 Route::get('/category', 'CategoryController@index');
@@ -28,7 +39,9 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth']], function () {
         'voucher' => 'VoucherController',
         'order' => 'OrderController',
         'product' => 'ProductController',
-        'user' => 'UserController'
+        'user' => 'UserController',
+        'posts' => 'PostsController',
+        'posts-category' => 'PostsCategoryController',
     ]);
 });
 
