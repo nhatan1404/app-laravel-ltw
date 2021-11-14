@@ -11,8 +11,9 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    
+
     protected $table = 'users';
+    protected $appends = ['fullname'];
 
     /**
      * The attributes that are mass assignable.
@@ -50,4 +51,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getFullNameAttribute()
+    {
+        return "{$this['lastname']} {$this['firstname']}";
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Posts', 'user_id', 'id')->where('status', 'active');
+    }
 }
