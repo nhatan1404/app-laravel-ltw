@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Posts;
+use App\Models\PostsCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostsController extends Controller
@@ -15,8 +18,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Posts::orderBy('id', 'DESC')->paginate(15);
-        return view('admin.posts.index');
+        $posts = Posts::getList();
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -26,7 +29,10 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = PostsCategory::getListByParent();
+        $users = User::all();
+        $current_user = Auth::id();
+        return view('admin.posts.create', compact('categories', 'users', 'current_user'));
     }
 
     /**
@@ -44,6 +50,8 @@ class PostsController extends Controller
                 'description' => 'string|required',
                 'content' => 'string|required',
                 'thumbnail' => 'string|required',
+                'status' => 'required|in:active,inactive',
+                'category_id' => 'required|exists:posts_categories,id',
                 'user_id' => 'required|exists:users,id'
             ]
         );
@@ -87,7 +95,9 @@ class PostsController extends Controller
     public function edit($id)
     {
         $posts = Posts::findOrFail($id);
-        return view('posts.edit', compact('posts'));
+        $categories = PostsCategory::all();
+        $users = User::all();
+        return view('admin.posts.edit', compact('posts', 'categories', 'users'));
     }
 
     /**
@@ -107,6 +117,8 @@ class PostsController extends Controller
                 'description' => 'string|required',
                 'content' => 'string|required',
                 'thumbnail' => 'string|required',
+                'status' => 'required|in:active,inactive',
+                'category_id' => 'required|exists:posts_categories,id',
                 'user_id' => 'required|exists:users,id'
             ]
         );
@@ -131,7 +143,8 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $posts = Posts::findOrFail($id);
-        $status = $posts->delete();
+        //$status = $posts->delete();
+        $status = true;
 
         if ($status) {
             request()->session()->flash('success', 'Đã xoá bài viết thành công');
