@@ -26,7 +26,8 @@ class PostsCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.posts-category.create');
+        $parent_categories = PostsCategory::getParentCategories();
+        return view('admin.posts-category.create', compact('parent_categories'));
     }
 
     /**
@@ -39,7 +40,8 @@ class PostsCategoryController extends Controller
     {
         $this->validate($request, [
             'title' => 'string|required',
-            'parent_id' => 'exists:posts_categories,id'
+            'description' => 'nullable|string',
+            'parent_id' => 'nullable|exists:posts_categories,id'
         ]);
 
         $data = $request->all();
@@ -80,8 +82,9 @@ class PostsCategoryController extends Controller
      */
     public function edit($id)
     {
-        $posts_categories = PostsCategory::findOrFail($id);
-        return view('admin.posts-category.edit', compact('posts_categories'));
+        $posts_category = PostsCategory::findOrFail($id);
+        $parent_categories = PostsCategory::getParentCategories();
+        return view('admin.posts-category.edit', compact('posts_category', 'parent_categories'));
     }
 
     /**
@@ -96,7 +99,8 @@ class PostsCategoryController extends Controller
         $posts_categories = PostsCategory::findOrFail($id);
         $this->validate($request, [
             'title' => 'string|required',
-            'parent_id' => 'exists:posts_categories,id'
+            'description' => 'nullable|string',
+            'parent_id' => 'nullable|exists:posts_categories,id'
         ]);
 
         $data = $request->all();
