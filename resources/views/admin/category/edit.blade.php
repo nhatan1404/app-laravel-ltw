@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('title', 'Sửa Danh Mục Sản Phẩm')
+
 @section('content')
     <x-Admin.Form.Edit name="Danh Mục" route="category.update" :id="$category->id">
         <x-Admin.Form.Input name="Tiêu đề" property="title" placeholder="Nhập tiêu đề" value="{{ $category->title }}" />
@@ -18,9 +19,13 @@
                 @endforeach
             </select>
         </div>
-    </x-Admin.Form.Edit> @endsection @push('styles')
+    </x-Admin.Form.Edit>
+@endsection
+
+@push('styles')
     <link rel="stylesheet" href="{{ asset('backend/summernote/summernote.min.css') }}">
 @endpush
+
 @push('scripts')
     <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
     <script src="{{ asset('backend/summernote/summernote.min.js') }}"></script>

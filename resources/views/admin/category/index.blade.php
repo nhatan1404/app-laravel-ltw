@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('title', 'Danh Sách Danh Mục Sản Phẩm')
+
 @section('content')
     @php
     $columns = [
