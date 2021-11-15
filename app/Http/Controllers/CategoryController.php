@@ -26,8 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $parentCategories = Category::whereNull('parent_id')->orderBy('title', 'ASC')->get();
-        return view('admin.category.create', compact('parentCategories'));
+        $parent_categories = Category::whereNull('parent_id')->orderBy('title', 'ASC')->get();
+        return view('admin.category.create', compact('parent_categories'));
     }
 
     /**
@@ -77,9 +77,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $parentCategories = Category::whereNull('parent_id')->orderBy('title', 'ASC')->get();
+        $parent_categories = Category::whereNull('parent_id')->orderBy('title', 'ASC')->get();
         $category = Category::findOrFail($id);
-        return view('admin.category.edit', compact('category', 'parentCategories'));
+        return view('admin.category.edit', compact('category', 'parent_categories'));
     }
 
     /**
@@ -119,11 +119,11 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-        $childCategory = Category::where('parent_id', $id)->pluck('id');
+        $child_category = Category::where('parent_id', $id)->pluck('id');
         $status = $category->delete();
         if ($status) {
-            if (count($childCategory) > 0) {
-                Category::whereIn('id', $childCategory)->update(['parent_id' => null]);
+            if (count($child_category) > 0) {
+                Category::whereIn('id', $child_category)->update(['parent_id' => null]);
             }
             request()->session()->flash('success', 'Đã xoá danh mục thành công.');
         } else {
