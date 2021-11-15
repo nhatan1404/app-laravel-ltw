@@ -9,7 +9,7 @@
         'type' => 'Loại',
         'value' => 'Giá Trị',
         'status' => 'Trạng Thái',
-        '' => '',
+        'action' => '',
     ];
     @endphp
 

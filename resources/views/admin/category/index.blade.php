@@ -8,7 +8,7 @@
         'title' => 'Tiêu Đề',
         'description' => 'Mô Tả',
         'slug' => 'Đường Dẫn',
-        '' => '',
+        'action' => '',
     ];
     @endphp
 

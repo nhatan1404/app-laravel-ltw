@@ -14,7 +14,7 @@
         'quantity' => 'Số Lượng',
         'sold' => 'Đã Bán',
         'status' => 'Trạng Thái',
-        '' => '',
+        'action' => '',
     ];
     @endphp
 

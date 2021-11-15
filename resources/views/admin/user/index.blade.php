@@ -10,7 +10,7 @@
         'created_at' => 'Ngày Tạo',
         'role' => 'Chức Vụ',
         'status' => 'Trạng Thái',
-        '' => '',
+        'action' => '',
     ];
     @endphp
 
