@@ -11,7 +11,7 @@
         'category' => 'Danh Mục',
         'author' => 'Tác Giả',
         'status' => 'Trạng Thái',
-        '' => '',
+        'action' => '',
     ];
     @endphp
 
