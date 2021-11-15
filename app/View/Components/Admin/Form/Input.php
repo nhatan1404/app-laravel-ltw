@@ -8,19 +8,25 @@ class Input extends Component
 {
     public $name;
     public $property;
+    public $type;
     public $placeholder;
     public $value;
+    public $min;
+    public $max;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $property, $placeholder, $value)
+    public function __construct($name, $property, $type = 'text', $placeholder, $value, $min = 0, $max = PHP_INT_MAX)
     {
         $this->name = $name;
         $this->property = $property;
+        $this->type = $type;
         $this->placeholder = $placeholder;
         $this->value = $value;
+        $this->min = $min;
+        $this->max = $max;
     }
 
     /**
