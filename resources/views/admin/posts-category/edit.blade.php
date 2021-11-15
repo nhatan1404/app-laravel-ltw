@@ -1,53 +1,23 @@
 @extends('admin.layouts.app')
 @section('title', 'Sửa Danh Mục Bài Viết')
 @section('content')
-    <div class="row">
-        <div class="col-lg-10 mx-auto">
-            <div class="card">
-                <h5 class="card-header">Sửa Danh Mục Bài Viết</h5>
-                <div class="card-body">
-                    <form method="post" action="{{ route('posts-category.update', $posts_category->id) }}">
-                        @csrf
-                        @method('PATCH')
-                        <div class="form-group">
-                            <label for="inputTitle" class="col-form-label">Tiêu đề: <span
-                                    class="text-danger">*</span></label>
-                            <input id="inputTitle" type="text" name="title" placeholder="Nhập tiêu đề"
-                                value="{{ $posts_category->title }}" class="form-control">
-                            @error('title')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+<x-Admin.Form.Edit name="Danh Mục Bài Viết" route="posts-category.update" :id="$posts_category->id">
+    <x-Admin.Form.Input name="Tiêu đề" property="title" placeholder="Nhập tiêu đề" value="{{ $posts_category->title }}" />
 
-                        <div class="form-group">
-                            <label for="inputDescription" class="col-form-label">Mô tả: </label>
-                            <textarea class="form-control" id="inputDescription"
-                                name="description">{{ $posts_category->description }}</textarea>
-                            @error('description')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+    <x-Admin.Form.Textarea name="Mô tả" property="description" placeholder="Nhập mô tả"
+        value="{{ $posts_category->description }}" placeholder="Nhập mô tả" />
 
-                        <div class="form-group {{ $posts_category->parent_id == null ? 'd-none' : '' }}">
-                            <label for="parent_id">Danh Mục Cha: <small>(tuỳ chọn)</small></label>
-                            <select name="parent_id" class="form-control">
-                                <option value="">Chọn danh mục</option>
-                                @foreach ($parent_categories as $key => $parent_category)
-                                    <option value='{{ $parent_category->id }}'
-                                        {{ $parent_category->id == $posts_category->parent_id ? 'selected' : '' }}>
-                                        {{ $parent_category->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <button class="btn btn-success" type="submit">Cập Nhật</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    @if ($posts_category->parent_id != null)
+        <x-Admin.Form.Select name="Danh mục cha" property="parent_id">
+            @foreach ($parent_categories as $key => $parent_category)
+                <option value='{{ $parent_category->id }}'
+                    {{ $parent_category->id == $posts_category->parent_id ? 'selected' : '' }}>
+                    {{ $parent_category->title }}
+                </option>
+            @endforeach
+        </x-Admin.Form.Select>
+    @endif
+</x-Admin.Form.Edit>
 @endsection
 
 @push('styles')
