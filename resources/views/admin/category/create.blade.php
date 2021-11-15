@@ -2,7 +2,7 @@
 @section('title', 'Tạo Danh Mục')
 
 @section('content')
-    <x-Admin.Form.Create name='Danh Mục' route='category.create'>
+    <x-Admin.Form.Create name='Danh Mục' route='category.store'>
         <x-Admin.Form.Input name="Tiêu đề" property="title" placeholder="Nhập tiêu đề" value="{{ old('title') }}" />
 
         <x-Admin.Form.Textarea name=" Mô tả" property="description" placeholder="" value="{{ old('description') }}"
