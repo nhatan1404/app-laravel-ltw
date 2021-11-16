@@ -143,8 +143,7 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $posts = Posts::findOrFail($id);
-        //$status = $posts->delete();
-        $status = true;
+        $status = $posts->delete();
 
         if ($status) {
             request()->session()->flash('success', 'Đã xoá bài viết thành công');
