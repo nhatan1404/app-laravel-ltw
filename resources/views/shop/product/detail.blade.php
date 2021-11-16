@@ -70,7 +70,8 @@
                             <p style="color: #000;">Số lượng: {{ $product->quantity }} có sẵn</p>
                         </div>
                     </div>
-                    <p><a href="cart.html" class="btn btn-black py-3 px-5">Thêm Vào Giỏ Hàng</a></p>
+                    <p><a href="javascript:void(0)" class="btn btn-black py-3 px-5"
+                            onClick="addCart({{ $product->id }})">Thêm Vào Giỏ Hàng</a></p>
                 </div>
             </div>
         </div>

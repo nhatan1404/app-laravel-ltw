@@ -16,13 +16,15 @@
             </div>
             <div class="bottom-area d-flex px-3">
                 <div class="m-auto d-flex">
-                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                    <a href="javascript:void(0)"
+                        class="add-to-cart d-flex justify-content-center align-items-center text-center">
                         <span><i class="ion-ios-menu"></i></span>
                     </a>
-                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                    <a href="javascript:void(0)" onclick="addCart({{ $product->id }})"
+                        class="buy-now d-flex justify-content-center align-items-center mx-1">
                         <span><i class="ion-ios-cart"></i></span>
                     </a>
-                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                    <a href="javascript:void(0)" class=" heart d-flex justify-content-center align-items-center ">
                         <span><i class="ion-ios-heart"></i></span>
                     </a>
                 </div>
