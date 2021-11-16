@@ -32,7 +32,9 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Trang Chủ</a></li>
-                {{ Helpers::getHeaderCategory() }}
+
+                <x-Shop.Shared.CategoryMenu :categories="Helpers::getListMenuCategory()" />
+
                 <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">Giới Thiệu</a></li>
                 <li class="nav-item"><a href="{{ route('posts-list') }}" class="nav-link">Tin Tức</a></li>
                 <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Liên Hệ</a></li>
