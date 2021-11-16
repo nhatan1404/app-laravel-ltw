@@ -10,6 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $table = 'products';
     protected $fillable = ['title', 'description', 'quantity', 'status', 'slug', 'images', 'price', 'sold', 'discount', 'category_id'];
+    protected $appends = ['origin_price', 'price_after_discount'];
 
     public function category()
     {
@@ -19,5 +20,17 @@ class Product extends Model
     public static function getBySlug($slug)
     {
         return Product::where('slug', $slug)->first();
+    }
+
+    public function getOriginPriceAttribute()
+    {
+        return number_format($this->price, 0, ',', '.');
+    }
+
+    public function getPriceAfterDiscountAttribute()
+    {
+        $discount_price = $this->price * ($this->discount / 100);
+        $real_price = $this->price - $discount_price;
+        return number_format($real_price, 0, ',', '.');
     }
 }
