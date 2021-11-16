@@ -3,6 +3,26 @@ AOS.init({
     easing: "slide",
 });
 
+$(".dropdown-menu a.dropdown-toggle").on("click", function (e) {
+    if (!$(this).next().hasClass("show")) {
+        $(this)
+            .parents(".dropdown-menu")
+            .first()
+            .find(".show")
+            .removeClass("show");
+    }
+    var $subMenu = $(this).next(".dropdown-menu");
+    $subMenu.toggleClass("show");
+
+    $(this)
+        .parents("li.nav-item.dropdown.show")
+        .on("hidden.bs.dropdown", function (e) {
+            $(".dropdown-submenu .show").removeClass("show");
+        });
+
+    return false;
+});
+
 var contentWayPoint = function () {
     var i = 0;
     $(".ftco-animate").waypoint(
@@ -155,31 +175,40 @@ var contentWayPoint = function () {
     };
     carousel();
 
-    $("nav .dropdown").hover(
+    $("a.dropdown-toggle").hover(
         function () {
             var $this = $(this);
-            // 	 timer;
-            // clearTimeout(timer);
             $this.addClass("show");
             $this.find("> a").attr("aria-expanded", true);
-            // $this.find('.dropdown-menu').addClass('animated-fast fadeInUp show');
-            $this.find(".dropdown-menu").addClass("show");
+            $this
+                .find(".dropdown-menu")
+                .addClass("animated-fast fadeInUp show");
         },
         function () {
             var $this = $(this);
-            // timer;
-            // timer = setTimeout(function(){
             $this.removeClass("show");
             $this.find("> a").attr("aria-expanded", false);
-            // $this.find('.dropdown-menu').removeClass('animated-fast fadeInUp show');
-            $this.find(".dropdown-menu").removeClass("show");
-            // }, 100);
+            $this
+                .find(".dropdown-menu")
+                .removeClass("animated-fast fadeInUp show");
         }
     );
 
-    $("#dropdown04").on("show.bs.dropdown", function () {
-        console.log("show");
-    });
+    // if (!$(this).next().hasClass("show")) {
+    //     $(this)
+    //         .parents(".dropdown-menu")
+    //         .first()
+    //         .find(".show")
+    //         .removeClass("show");
+    // }
+    // var $subMenu = $(this).next(".dropdown-menu");
+    // $subMenu.toggleClass("show");
+
+    // $(this)
+    //     .parents("li.nav-item.dropdown.show")
+    //     .on("hidden.bs.dropdown", function (e) {
+    //         $(".dropdown-submenu .show").removeClass("show");
+    //     });
 
     // scroll
     var scrollWindow = function () {
