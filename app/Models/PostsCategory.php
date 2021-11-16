@@ -10,6 +10,7 @@ class PostsCategory extends Model
     use HasFactory;
     protected $table = 'posts_categories';
     protected $fillable = ['title', 'description', 'slug', 'parent_id'];
+    protected $appends = ['total_posts'];
 
     public function posts()
     {
@@ -21,8 +22,14 @@ class PostsCategory extends Model
         return $this->hasMany('App\Models\PostsCategory', 'parent_id')->where('status', 'active');
     }
 
-    public function children(){
-        return $this->hasMany('App\Models\PostsCategory','parent_id','id');
+    public function children()
+    {
+        return $this->hasMany('App\Models\PostsCategory', 'parent_id', 'id');
+    }
+
+    public static function getBySlug($slug)
+    {
+        return PostsCategory::where('slug', $slug)->first();
     }
 
     public static function getParentCategories()
@@ -33,5 +40,10 @@ class PostsCategory extends Model
     public static function getListByParent()
     {
         return PostsCategory::with('children')->whereNull('parent_id')->get();
+    }
+
+    public function getTotalPostsAttribute()
+    {
+        return $this->hasMany('App\Models\Posts', 'category_id', 'id')->where('status', 'active')->count();
     }
 }
