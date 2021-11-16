@@ -13111,11 +13111,13 @@ textarea.form-control {
   }
 }
 
-body {
+.error-container {
+  width: 100%;
+  height: 100%;
   background-color: #95c2de;
 }
 
-.mainbox {
+.error-container .mainbox {
   background-color: #95c2de;
   margin: auto;
   height: 600px;
@@ -13123,7 +13125,7 @@ body {
   position: relative;
 }
 
-.mainbox .err {
+.error-container .mainbox .err {
   color: #ffffff;
   font-family: "Nunito Sans", sans-serif;
   font-size: 11rem;
@@ -13132,7 +13134,7 @@ body {
   top: 8%;
 }
 
-.mainbox .far {
+.error-container .mainbox .far {
   position: absolute;
   font-size: 8.5rem;
   left: 42%;
@@ -13140,7 +13142,7 @@ body {
   color: #ffffff;
 }
 
-.mainbox .err2 {
+.error-container .mainbox .err2 {
   color: #ffffff;
   font-family: "Nunito Sans", sans-serif;
   font-size: 11rem;
@@ -13149,7 +13151,7 @@ body {
   top: 8%;
 }
 
-.mainbox .msg {
+.error-container .mainbox .msg {
   text-align: center;
   font-family: "Nunito Sans", sans-serif;
   font-size: 1.6rem;
@@ -13159,12 +13161,12 @@ body {
   width: 75%;
 }
 
-.mainbox a {
+.error-container .mainbox a {
   text-decoration: none;
   color: white;
 }
 
-.mainbox a:hover {
+.error-container .mainbox a:hover {
   text-decoration: underline;
 }
 /*# sourceMappingURL=style.css.map */
