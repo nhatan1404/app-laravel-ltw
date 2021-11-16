@@ -18,7 +18,7 @@ class Category extends Model
 
     public function parent()
     {
-        return $this->hasMany('App\Models\Category', 'parent_id')->where('status', 'active');
+        return $this->belongsTo('App\Models\Category', 'parent_id');
     }
 
     public function children()
@@ -26,8 +26,23 @@ class Category extends Model
         return $this->hasMany('App\Models\Category', 'parent_id', 'id');
     }
 
+    public static function getBySlug($slug)
+    {
+        return Category::where('slug', $slug)->first();
+    }
+
+    public static function getParentCategories()
+    {
+        return Category::whereNull('parent_id')->get();
+    }
+
     public static function getListByParent()
     {
         return Category::with('children')->whereNull('parent_id')->get();
+    }
+
+    public static function getChildrenIds($parent_id)
+    {
+        return Category::where('parent_id', $parent_id)->pluck('id');
     }
 }
