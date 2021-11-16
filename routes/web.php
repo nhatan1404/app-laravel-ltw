@@ -14,23 +14,40 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Main page
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');
-Route::get('/login', 'HomeController@contact')->name('login');
-Route::get('/register', 'HomeController@contact')->name('register');
-Route::get('/profile/{id}', 'HomeController@contact')->name('profile');
+
+// Product
 Route::get('/product', 'HomeController@productList')->name('product-list');
 Route::get('/product/{slug}', 'HomeController@productDetail')->name('product-detail');
+
+//Category
+Route::get('/category/{slug}', 'HomeController@productByCategory')->name('product-by-category');
+
+// Posts
 Route::get('/posts', 'HomeController@postsList')->name('posts-list');
 Route::get('/posts/{slug}', 'HomeController@postsDetail')->name('posts-detail');
-Route::get('/checkout', 'HomeController@postsDetail')->name('checkout');
+Route::get('/posts-category/{slug}', 'HomeController@postsByCategory')->name('posts-by-category');
+
+// Shoping
+Route::get('/cart', 'HomeController@cart')->name('cart')->middleware('auth');
+Route::get('/checkout', 'HomeController@checkout')->name('checkout')->middleware('auth');
 
 
-Route::get('/category', 'CategoryController@index');
+// User
+Route::get('/user/login', 'HomeController@login')->name('login');
+Route::post('/user/login', 'Auth\LoginController@login');
+Route::post('/user/logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('user/register', 'HomeController@register')->name('register');
+Route::post('user/register', 'Auth\RegisterController@register');
+Route::get('/profile/{id}', 'HomeController@profile')->name('profile');
 
+// Auth
+Auth::routes();
 
+// Dashboard
 Route::group(['prefix' => '/dashboard', 'middleware' => ['auth']], function () {
     Route::get('/', 'DashboardController@index')->name(('dashboard.index'));
     Route::get('/file-manager', 'DashboardController@fileManager')->name('file-manager');
@@ -45,10 +62,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth']], function () {
     ]);
 });
 
+// Laravel File Manager
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
