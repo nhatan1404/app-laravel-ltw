@@ -4,11 +4,11 @@
 @include('shop.layouts.head')
 
 <body class="goto-here">
-  @include('shop.layouts.header')
+    @include('shop.layouts.header')
 
-  @yield('content')
+    @yield('content')
 
-  @include('shop.layouts.footer')
+    @include('shop.layouts.footer')
 </body>
 
 </html>
