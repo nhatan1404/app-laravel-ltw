@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // Main page
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
@@ -32,7 +33,10 @@ Route::get('/posts/{slug}', 'HomeController@postsDetail')->name('posts-detail');
 Route::get('/posts-category/{slug}', 'HomeController@postsByCategory')->name('posts-by-category');
 
 // Shoping
-Route::get('/cart', 'HomeController@cart')->name('cart')->middleware('auth');
+Route::get('/cart', 'CartController@getListCart')->name('cart')->middleware('auth');
+Route::get('/cart/{id}', 'CartController@addToCart')->name('add-cart')->middleware('auth');
+Route::put('/cart/{id}', 'CartController@updateCart')->name('update-cart')->middleware('auth');
+Route::delete('/cart/{id}', 'CartController@removeCart')->name('remove-cart')->middleware('auth', 'throttle:30,1');
 Route::get('/checkout', 'HomeController@checkout')->name('checkout')->middleware('auth');
 
 
