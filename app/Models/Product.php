@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Helpers;
 
 class Product extends Model
 {
@@ -24,13 +25,22 @@ class Product extends Model
 
     public function getOriginPriceAttribute()
     {
-        return number_format($this->price, 0, ',', '.');
+        return Helpers::formatCurrency($this->price);
     }
 
     public function getPriceAfterDiscountAttribute()
     {
         $discount_price = $this->price * ($this->discount / 100);
         $real_price = $this->price - $discount_price;
-        return number_format($real_price, 0, ',', '.');
+        return Helpers::formatCurrency($real_price);
+    }
+
+    public static function getCountActiveProduct()
+    {
+        $data = Product::where('status', 'active')->count();
+        if ($data) {
+            return $data;
+        }
+        return 0;
     }
 }

@@ -25,7 +25,7 @@ class User extends Authenticatable
         'lastname',
         'password',
         'avatar',
-        'address',
+        'address_id',
         'email',
         'telephone',
         'role',
@@ -59,5 +59,24 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany('App\Models\Posts', 'user_id', 'id')->where('status', 'active');
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class, 'id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order', 'user_id', 'id');
+    }
+
+    public function getCountActiveUser()
+    {
+        $data = User::where('status', 'active')->count();
+        if ($data) {
+            return $data;
+        }
+        return 0;
     }
 }

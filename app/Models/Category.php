@@ -45,4 +45,13 @@ class Category extends Model
     {
         return Category::where('parent_id', $parent_id)->pluck('id');
     }
+
+    public static function getCountCategory()
+    {
+        $data = Category::get()->count();
+        if ($data) {
+            return $data;
+        }
+        return 0;
+    }
 }

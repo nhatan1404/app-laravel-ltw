@@ -30,4 +30,13 @@ class Posts extends Model
     {
         return Posts::where('slug', $slug)->first();
     }
+
+    public static function getCountActivePosts()
+    {
+        $data = Posts::where('status', 'active')->count();
+        if ($data) {
+            return $data;
+        }
+        return 0;
+    }
 }
