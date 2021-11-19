@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-lg-8 ftco-animate">
                     <h2 class="mb-3">{{ $post->title }}</h2>
-                    {{ $post->content }}
+                {{ $post->content }}
 
                     @if (Auth::check())
                         <div class="pt-5 mt-5">
