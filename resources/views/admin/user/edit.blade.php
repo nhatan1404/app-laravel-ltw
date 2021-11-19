@@ -24,6 +24,17 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                <x-Admin.Form.Input name="Mật khẩu" property="password" type="password" placeholder="Nhập mật khẩu"
+                    value="" />
+            </div>
+            <div class="col">
+                <x-Admin.Form.Input name="Xác nhận mật khẩu" property="repassword" type="password"
+                    placeholder="Nhập lại mật khẩu" value="" />
+            </div>
+        </div>
+
         <x-Admin.Form.InputImage name="Ảnh đại diện" property="avatar" :value="$user->avatar" />
 
         <div class="row">
@@ -45,11 +56,51 @@
                 </x-Admin.Form.Select>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <x-Admin.Form.Input name="Địa chỉ" property="address" type="text" placeholder="Nhập địa chỉ"
+                    value="{{ $user->address ? $user->address->address : '' }}" />
+            </div>
+            <div class="col mt-2">
+                <x-Admin.Form.Select name="Tỉnh" property="province">
+                    @foreach (Helpers::getAllProvince() as $province)
+                        <option value="{{ $province->id }}"
+                            {{ $user->address && $user->address->province->id == $province->id ? ' selected' : '' }}>
+                            {{ $province->name_with_type }}</option>
+                    @endforeach
+                </x-Admin.Form.Select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <x-Admin.Form.Select name="Thành phố/quận" property="district">
+                    @if ($user->address)
+                        @foreach (Helpers::getDistricts($user->address->province->id) as $district)
+                            <option value="{{ $district->id }}"
+                                {{ $district->id == $user->address->district->id ? ' selected="selected"' : '' }}>
+                                {{ $district->name_with_type }}</option>
+                        @endforeach
+                    @endif
+                </x-Admin.Form.Select>
+            </div>
+            <div class="col">
+                <x-Admin.Form.Select name="Phường/Xã" property="ward">
+                    @if ($user->address)
+                        @foreach (Helpers::getWards($user->address->district->id) as $ward)
+                            <option value="{{ $ward->id }}"
+                                {{ $ward->id == $user->address->ward->id ? ' selected' : '' }}>
+                                {{ $ward->name_with_type }}</option>
+                        @endforeach
+                    @endif
+                </x-Admin.Form.Select>
+            </div>
+        </div>
     </x-Admin.Form.Edit>
 @endsection
 
 @push('scripts')
     <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+    <script src="{{ asset('admin/js/main.js') }}"></script>
     <script>
         $('#lfm').filemanager();
     </script>
