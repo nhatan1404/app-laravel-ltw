@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Cart extends Model
 {
     use HasFactory;
     protected $table = 'carts';
-    protected $fillable = ['user_id', 'order_id', 'total'];
+    protected $fillable = ['user_id', 'status', 'total'];
     protected $appends = ['count'];
 
     public function items()
@@ -25,5 +26,10 @@ class Cart extends Model
     public function getCountAttribute()
     {
         return $this->items->count();
+    }
+
+    public static function getCart()
+    {
+        return Cart::where('user_id', Auth::id())->where('status', 'active')->first();
     }
 }
