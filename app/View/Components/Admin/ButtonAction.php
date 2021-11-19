@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class ButtonAction extends Component
 {
     public $id;
+    public $show;
     public $edit;
     public $delete;
     /**
@@ -14,9 +15,10 @@ class ButtonAction extends Component
      *
      * @return void
      */
-    public function __construct($id, $edit, $delete)
+    public function __construct($id, $show, $edit, $delete)
     {
         $this->id = $id;
+        $this->show = $show;
         $this->edit = $edit;
         $this->delete = $delete;
     }
