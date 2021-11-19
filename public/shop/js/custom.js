@@ -20,7 +20,7 @@ function addCart(id) {
     if (regex.test(path)) {
         quantity = $("#quantity").val();
     }
-    
+
     $.ajax({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -230,7 +230,7 @@ $("#province").change(function () {
                 '<option value="">Chọn thành phố/quận</option>'
             );
 
-            wardSelect.append('<option value="">Chọn thành phường/xã</option>');
+            wardSelect.append('<option value="">Chọn phường/xã</option>');
 
             districts.forEach((district) => {
                 districtSelect.append(
@@ -264,7 +264,7 @@ $("#district").change(function () {
             const { wards } = data;
             const wardSelect = $("#ward");
             wardSelect.empty();
-            wardSelect.append('<option value="">Chọn thành phường/xã</option>');
+            wardSelect.append('<option value="">Chọn phường/xã</option>');
 
             wards.forEach((ward) => {
                 wardSelect.append(
