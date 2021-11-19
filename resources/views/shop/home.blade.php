@@ -11,24 +11,24 @@
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
                         <div class="col-md-12 ftco-animate text-center">
-                            <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
-                            <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-                            <p><a href="#" class="btn btn-primary">View Details</a></p>
+                            <h1 class="mb-2">Chúng tôi bán các loại rau tươi và trái cây sạch</h1>
+                            <h2 class="subheading mb-4">Chúng tôi cung cấp rau hữu cơ &amp; trái cây</h2>
+                            <p><a href="#" class="btn btn-primary">Xem chi tiết</a></p>
                         </div>
 
                     </div>
                 </div>
             </div>
 
-            <div class="slider-item" style="background-image: url({{ asset('shop/images/bg_2.jpg')}});">
+            <div class="slider-item" style="background-image: url({{ asset('shop/images/bg_2.jpg') }});">
                 <div class="overlay"></div>
                 <div class="container">
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
                         <div class="col-sm-12 ftco-animate text-center">
-                            <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
+                            <h1 class="mb-2">100% tươi ngon và sạch</h1>
                             <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-                            <p><a href="#" class="btn btn-primary">View Details</a></p>
+                            <p><a href="#" class="btn btn-primary">Xem chi tiết</a></p>
                         </div>
 
                     </div>
@@ -46,8 +46,8 @@
                             <span class="flaticon-shipped"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Free Shipping</h3>
-                            <span>On order over $100</span>
+                            <h3 class="heading">Miễn Phí Vận Chuyển</h3>
+                            <span>Đơn hàng trên 1.000.000 VNĐ</span>
                         </div>
                     </div>
                 </div>
@@ -57,8 +57,8 @@
                             <span class="flaticon-diet"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Always Fresh</h3>
-                            <span>Product well package</span>
+                            <h3 class="heading">Sản Phẩm Luôn Tươi Ngon</h3>
+                            <span>Luôn được đóng gói tốt</span>
                         </div>
                     </div>
                 </div>
@@ -68,8 +68,8 @@
                             <span class="flaticon-award"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Superior Quality</h3>
-                            <span>Quality Products</span>
+                            <h3 class="heading">Chất Lượng Cao</h3>
+                            <span>Sản phẩm chất lượng tốt</span>
                         </div>
                     </div>
                 </div>
@@ -79,8 +79,8 @@
                             <span class="flaticon-customer-service"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Support</h3>
-                            <span>24/7 Support</span>
+                            <h3 class="heading">Hỗ Trợ</h3>
+                            <span>Hỗ trợ 24/7</span>
                         </div>
                     </div>
                 </div>
@@ -95,23 +95,23 @@
                     <div class="row">
                         <div class="col-md-6 order-md-last align-items-stretch d-flex">
                             <div class="category-wrap-2 ftco-animate img align-self-stretch d-flex"
-                                style="background-image: url({{ asset('shop/images/category.jpg')}});">
+                                style="background-image: url({{ asset('shop/images/category.jpg') }});">
                                 <div class="text text-center">
-                                    <h2>Vegetables</h2>
-                                    <p>Protect the health of every home</p>
-                                    <p><a href="#" class="btn btn-primary">Shop now</a></p>
+                                    <h2>Rau Củ Quả Sạch</h2>
+                                    <p>Bảo vệ sức khỏe mọi nhà</p>
+                                    <p><a href="{{route('product-list')}}" class="btn btn-primary">Mua Ngay</a></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
-                                style="background-image: url({{ asset('shop/images/category-1.jpg')}});">
+                                style="background-image: url({{ asset('shop/images/category-1.jpg') }});">
                                 <div class="text px-3 py-1">
                                     <h2 class="mb-0"><a href="#">Fruits</a></h2>
                                 </div>
                             </div>
                             <div class="category-wrap ftco-animate img d-flex align-items-end"
-                                style="background-image: url({{ asset('shop/images/category-2.jpg')}});">
+                                style="background-image: url({{ asset('shop/images/category-2.jpg') }});">
                                 <div class="text px-3 py-1">
                                     <h2 class="mb-0"><a href="#">Vegetables</a></h2>
                                 </div>
@@ -122,13 +122,13 @@
 
                 <div class="col-md-4">
                     <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
-                        style="background-image: url({{ asset('shop/images/category-3.jpg')}});">
+                        style="background-image: url({{ asset('shop/images/category-3.jpg') }});">
                         <div class="text px-3 py-1">
                             <h2 class="mb-0"><a href="#">Juices</a></h2>
                         </div>
                     </div>
                     <div class="category-wrap ftco-animate img d-flex align-items-end"
-                        style="background-image: url({{ asset('shop/images/category-4.jpg')}});">
+                        style="background-image: url({{ asset('shop/images/category-4.jpg') }});">
                         <div class="text px-3 py-1">
                             <h2 class="mb-0"><a href="#">Dried</a></h2>
                         </div>
@@ -142,9 +142,8 @@
         <div class="container">
             <div class="row justify-content-center mb-3 pb-3">
                 <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Featured Products</span>
-                    <h2 class="mb-4">Our Products</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                    <span class="subheading">Sản Phẩm Nổi Bật</span>
+                    <h2 class="mb-4">Các Sản Phẩm Của Chúng Tôi</h2>
                 </div>
             </div>
         </div>
@@ -154,19 +153,18 @@
                     <x-Shop.Product.Item :product="$product" />
                 @endforeach
             </div>
-            <div class="text-center"><button class="see-more btn btn-primary mx">See more</button></div>
+            <div class="text-center"><button class="see-more btn btn-primary mx">Xem Thêm</button></div>
         </div>
     </section>
 
-    <section class="ftco-section img" style="background-image: url({{ asset('shop/images/bg_3.jpg')}});">
+    <section class="ftco-section img" style="background-image: url({{ asset('shop/images/bg_3.jpg') }});">
         <div class="container">
             <div class="row justify-content-end">
                 <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
-                    <span class="subheading">Best Price For You</span>
-                    <h2 class="mb-4">Deal of the day</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-                    <h3><a href="#">Spinach</a></h3>
-                    <span class="price">$10 <a href="#">now $5 only</a></span>
+                    <span class="subheading">Giá tốt nhất cho bạn</span>
+                    <h2 class="mb-4">Ưu đãi trong ngày</h2>
+                    <h3><a href="#">Rau xà lách</a></h3>
+                    <span class="price">30.000 VNĐ<a href="#">chỉ còn 20.000 VNĐ</a></span>
                     <div id="timer" class="d-flex mt-5">
                         <div class="time" id="days"></div>
                         <div class="time pl-3" id="hours"></div>
@@ -177,130 +175,6 @@
             </div>
         </div>
     </section>
-
-    <section class="ftco-section testimony-section">
-        <div class="container">
-            <div class="row justify-content-center mb-5 pb-3">
-                <div class="col-md-7 heading-section ftco-animate text-center">
-                    <span class="subheading">Testimony</span>
-                    <h2 class="mb-4">Our satisfied customer says</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts. Separated they live in</p>
-                </div>
-            </div>
-            <div class="row ftco-animate">
-                <div class="col-md-12">
-                    <div class="carousel-testimony owl-carousel">
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-5" style="background-image: url({{ asset('shop/images/person_1.jpg')}})">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">Marketing Manager</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-5" style="background-image: url({{ asset('shop/images/person_2.jpg')}})">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">Interface Designer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-5" style="background-image: url({{ asset('shop/images/person_3.jpg')}})">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">UI Designer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-5" style="background-image: url({{ asset('shop/images/person_1.jpg')}})">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">Web Developer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-5" style="background-image: url({{ asset('shop/images/person_1.jpg')}})">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">System Analyst</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr>
-
-    <section class="ftco-section ftco-partner">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner"><img src="{{ asset('shop/images/partner-1.png')}}" class="img-fluid"
-                            alt="Colorlib Template"></a>
-                </div>
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner"><img src="{{ asset('shop/images/partner-2.png')}}" class="img-fluid"
-                            alt="Colorlib Template"></a>
-                </div>
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner"><img src="{{ asset('shop/images/partner-3.png')}}" class="img-fluid"
-                            alt="Colorlib Template"></a>
-                </div>
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner"><img src="{{ asset('shop/images/partner-4.png')}}" class="img-fluid"
-                            alt="Colorlib Template"></a>
-                </div>
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner"><img src="{{ asset('shop/images/partner-5.png')}}" class="img-fluid"
-                            alt="Colorlib Template"></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
 @endsection
 
 
