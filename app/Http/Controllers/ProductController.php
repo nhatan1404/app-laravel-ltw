@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::getListByParent();   
+        $categories = Category::getListByParent();
         return view('admin.product.create', compact('categories'));
     }
 
@@ -74,11 +74,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('admin.product.detail', compact('product'));
     }
- 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -88,7 +89,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        $categories = Category::getListByParent(); 
+        $categories = Category::getListByParent();
         return view('admin.product.edit', compact('product', 'categories'));
     }
 

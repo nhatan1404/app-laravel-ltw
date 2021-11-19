@@ -71,7 +71,8 @@ class PostsCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $posts_category = PostsCategory::findOrFail($id);
+        return view('admin.posts-category.detail', compact('posts_category'));
     }
 
     /**

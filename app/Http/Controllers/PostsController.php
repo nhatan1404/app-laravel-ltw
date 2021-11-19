@@ -83,7 +83,8 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $posts = Posts::findOrFail($id);
+        return view('admin.posts.detail', compact('posts'));
     }
 
     /**

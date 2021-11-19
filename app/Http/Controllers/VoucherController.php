@@ -60,7 +60,8 @@ class VoucherController extends Controller
      */
     public function show($id)
     {
-        //
+        $voucher = Voucher::findOrFail($id);
+        return view('admin.voucher.detail', compact('voucher'));
     }
 
     /**
