@@ -7,7 +7,12 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Posts;
 use App\Models\PostsCategory;
-use Auth;
+use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use Vanthao03596\HCVN\Models\Province;
+use Illuminate\Support\Facades\Auth;
+use Helpers;
 
 class HomeController extends Controller
 {
@@ -112,12 +117,61 @@ class HomeController extends Controller
         return view('shop.user.profile', compact('user'));
     }
 
-    public function cart()
-    {
-        return view('shop.user.cart');
-    }
     public function checkout()
     {
-        return view('shop.user.checkout');
+        $carts = Cart::getCart();
+        if (!$carts || $carts->count == 0) {
+            return redirect()->route('home');
+        }
+        $user = Auth::user();
+        $provinces = Province::get();
+        return view('shop.user.checkout', compact('user', 'carts', 'provinces'));
+    }
+
+    public function order(Request $request)
+    {
+        if ($request->ajax()) {
+            $this->validate($request, [
+                'firstname' => 'string|required',
+                'lastname' => 'string|required',
+                'address' => 'string|required',
+                'telephone' => 'numeric|required',
+                'email' => 'string|required',
+                'note' => 'string|nullable',
+                'coupon' => 'nullable|numeric',
+            ]);
+
+
+            $carts = Cart::getCart();
+            if (empty($carts)) {
+                return response()->json(['message' => 'Cart is empty', 'type' => 'cart-empty'], 400);
+            }
+
+            $order = new Order();
+            $data = $request->all();
+            $full_address = $request->input('address') . ", " . $request->input('ward') . ", " . $request->input('district') . ", " . $request->input('province');
+
+            $order['order_number'] = Helpers::generateOrderNumber(Order::count());
+            $order['user_id'] = Auth::id();
+            $order['address'] = $full_address;
+            $order['status'] = 'new';
+            $order->total = $carts->total;
+            $order->fill($data)->save();
+
+            $order_items = [];
+            foreach ($carts->items as $item) {
+                $order_items[] = [
+                    'order_id' => $order->id,
+                    'product_id' => $item->product->id,
+                    'quantity' => $item->quantity,
+                    'price' => $item->quantity * $item->product->price,
+                ];
+            }
+            OrderDetail::insert($order_items);
+
+            $carts->status = 'inactive';
+            $carts->save();
+            return response()->json(['message' => 'Successful'], 200);
+        }
     }
 }
