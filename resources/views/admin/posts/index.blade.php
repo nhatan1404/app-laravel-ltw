@@ -50,7 +50,7 @@
                     @endif
                 </td>
                 <td>
-                    <x-Admin.ButtonAction :id="$post->id" edit="posts.edit" delete="posts.destroy" />
+                    <x-Admin.ButtonAction :id="$post->id"  show="posts.show" edit="posts.edit" delete="posts.destroy" />
                 </td>
             </tr>
         @endforeach

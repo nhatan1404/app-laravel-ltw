@@ -43,7 +43,7 @@
                 <td>{{ $order->note != null ? $order->note : 'Trống...' }}</td>
                 </td>
                 <td>
-                    <x-Admin.ButtonAction :id="$order->id" edit="order.edit" delete="order.destroy" />
+                    <x-Admin.ButtonAction :id="$order->id"  show="order.show" edit="order.edit" delete="order.destroy" />
                 </td>
             </tr>
         @endforeach

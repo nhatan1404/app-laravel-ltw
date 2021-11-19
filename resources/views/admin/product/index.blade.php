@@ -48,7 +48,7 @@
                     @endif
                 </td>
                 <td>
-                    <x-Admin.ButtonAction :id="$product->id" edit="product.edit" delete="product.destroy" />
+                    <x-Admin.ButtonAction :id="$product->id"  show="product.show" edit="product.edit" delete="product.destroy" />
                 </td>
             </tr>
         @endforeach

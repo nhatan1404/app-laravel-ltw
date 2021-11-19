@@ -20,7 +20,7 @@
                 <td>{{ $category->slug }}</td>
                 </td>
                 <td>
-                    <x-Admin.ButtonAction :id="$category->id" edit="posts-category.edit" delete="posts-category.destroy" />
+                    <x-Admin.ButtonAction :id="$category->id"  show="posts-category.show" edit="posts-category.edit" delete="posts-category.destroy" />
                 </td>
             </tr>
         @endforeach

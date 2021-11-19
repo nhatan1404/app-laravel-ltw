@@ -40,7 +40,7 @@
                     @endif
                 </td>
                 <td>
-                    <x-Admin.ButtonAction :id="$voucher->id" edit="voucher.edit" delete="voucher.destroy" />
+                    <x-Admin.ButtonAction :id="$voucher->id"  show="voucher.show" edit="voucher.edit" delete="voucher.destroy" />
                 </td>
             </tr>
         @endforeach
