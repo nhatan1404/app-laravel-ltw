@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Address;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,6 +55,11 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => 'required|string',
+            'province' => 'required|string',
+            'district' => 'required|string',
+            'ward' => 'required|string',
+            'telephone' => 'required|string|max:20',
         ]);
     }
 
@@ -65,11 +71,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $address = new Address();
+        $address->address = $data['address'];
+        $address->province_id = $data['province'];
+        $address->district_id = $data['district'];
+        $address->ward_id = $data['ward'];
+        $address->save();
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'address_id' => $address->id,
+            'telephone' => $data['telephone'],
+            'role' => 'customer'
         ]);
     }
 }
