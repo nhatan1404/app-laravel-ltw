@@ -19,7 +19,7 @@ class PostsCategory extends Model
 
     public function parent()
     {
-        return $this->hasMany('App\Models\PostsCategory', 'parent_id')->where('status', 'active');
+        return $this->belongsTo('App\Models\PostsCategory', 'parent_id');
     }
 
     public function children()
