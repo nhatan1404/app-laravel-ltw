@@ -1,6 +1,5 @@
 <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">Danh Mục</a>
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Danh Mục</a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         @foreach ($categories as $parent)
             @if (count($parent->children) == 0)
