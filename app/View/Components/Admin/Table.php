@@ -15,7 +15,7 @@ class Table extends Component
      *
      * @return void
      */
-    public function __construct($name, $columns, $create, $value)
+    public function __construct($name, $columns, $create, $value =[])
     {
         $this->name = $name;
         $this->columns = $columns;
