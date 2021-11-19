@@ -38,13 +38,19 @@
                 <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">Giới Thiệu</a></li>
                 <li class="nav-item"><a href="{{ route('posts-list') }}" class="nav-link">Tin Tức</a></li>
                 <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Liên Hệ</a></li>
-                {{-- <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span
-                            class="icon-heart"></span>[0]</a></li> --}}
-                <li class="nav-item cta cta-colored"><a id="cart_count" href="{{ route('cart') }}"
-                        class="nav-link"><span
-                            class="icon-shopping_cart"></span>[{{ Helpers::getCartCount() }}]</a></li>
+                <li class="nav-item cta cta-colored">
+                    <a id="cart_count" href="{{ route('cart') }}" class="nav-link">
+                        <span class="icon-shopping_cart"></span>
+                        @guest
+                            [0]
+                        @else
+                        
+                            [{{ Helpers::getCartCount() }}]
+                        @endguest
+                    </a>
+                </li>
                 <li class="nav-item cta cta-colored"><a
-                        href="{{ Auth::check() ? route('profile', Auth::id()) : route('login') }}"
+                        href="{{ Auth::check() ? route('profile', Auth::id()) : route('user-login') }}"
                         class="nav-link"><span
                             class="icon-user mr-2"></span>{{ Auth::check() ? Auth::user()->fullname : '' }}</a>
                 </li>
