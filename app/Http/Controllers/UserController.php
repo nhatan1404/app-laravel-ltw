@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Address;
 use App\Libraries\General;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         $role = Auth::user()->role;
-        $users = $role == 'admin' ? User::orderBy('id', 'ASC')->paginate(10) : User::where('role', 'customer')->orderBy('id', 'ASC')->paginate(10);
+        $users = $role == 'admin' ? User::orderBy('id', 'DESC')->paginate(10) : User::where('role', 'customer')->orderBy('id', 'ASC')->paginate(10);
         return view('admin.user.index', compact('users'));
     }
 
@@ -47,8 +48,12 @@ class UserController extends Controller
                 'firstname' => 'string|required|max:50',
                 'lastname' => 'string|required|max:50',
                 'password' => 'string|required',
+                'repassword' => 'string|required|same:password',
                 'avatar' => 'nullable|string',
                 'address' => 'nullable|string',
+                'province' => 'nullable|string',
+                'district' => 'nullable|string',
+                'ward' => 'nullable|string',
                 'email' => 'string|required|unique:users',
                 'telephone' => 'nullable|string|max:20',
                 'role' => 'required|in:admin,employee,customer',
@@ -56,6 +61,23 @@ class UserController extends Controller
             ]
         );
         $data = $request->all();
+
+        if ($request->input('address')) {
+            $this->validate($request, [
+                'province' => 'required|string',
+                'district' => 'required|string',
+                'ward' => 'required|string',
+            ]);
+
+            $address = new Address();
+            $address->address = $data['address'];
+            $address->province_id = $data['province'];
+            $address->district_id = $data['district'];
+            $address->ward_id = $data['ward'];
+            $address->save();
+            $data['address_id'] = $address->id;
+        }
+
         $data['password'] = Hash::make($request->password);
         $status = User::create($data);
         if ($status) {
@@ -103,15 +125,49 @@ class UserController extends Controller
         $this->validate($request, [
             'firstname' => 'string|required|max:50',
             'lastname' => 'string|required|max:50',
-            //password' => 'string|required',
             'avatar' => 'nullable|string',
             'address' => 'nullable|string',
+            'province' => 'nullable|string',
+            'district' => 'nullable|string',
+            'ward' => 'nullable|string',
             'email' => 'string|required',
             'telephone' => 'nullable|string|max:20',
             'role' => 'required|in:admin,employee,customer',
             'status' => 'required|in:active,inactive',
         ]);
         $data = $request->all();
+
+        if ($request->input('password')) {
+            $this->validate($request, [
+                'password' => 'string|required',
+                'repassword' => 'string|required|same:password',
+            ]);
+        }
+
+        if ($request->input('address')) {
+            $this->validate($request, [
+                'province' => 'required|string',
+                'district' => 'required|string',
+                'ward' => 'required|string',
+            ]);
+
+            $address = null;
+            if ($user->address) {
+                $address = Address::findOrFail($user->address_id);
+            } else {
+                $address = new Address();
+            }
+            $address->address = $data['address'];
+            $address->address = $data['address'];
+            $address->province_id = $data['province'];
+            $address->district_id = $data['district'];
+            $address->ward_id = $data['ward'];
+            $address->save();
+            $data['address_id'] = $address->id;
+        }
+
+        $data['password'] = Hash::make($request->password);
+
         $status = $user->fill($data)->save();
         if ($status) {
             request()->session()->flash('success', 'Cập nhật tài khoản thành công.');
