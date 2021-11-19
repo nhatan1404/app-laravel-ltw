@@ -71,7 +71,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Order', 'user_id', 'id');
     }
 
-    public function getCountActiveUser()
+    public static function getCountActiveUser()
     {
         $data = User::where('status', 'active')->count();
         if ($data) {

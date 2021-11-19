@@ -47,7 +47,7 @@ class PostsCategory extends Model
         return $this->hasMany('App\Models\Posts', 'category_id', 'id')->where('status', 'active')->count();
     }
 
-    public function getCountPostCategory()
+    public static function getCountPostCategory()
     {
         return PostsCategory::get()->count();
     }
