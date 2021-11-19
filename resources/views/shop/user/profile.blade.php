@@ -1,61 +1,48 @@
 @extends('shop.layouts.app')
-@section('title', 'Liên hệ')
+@section('title', 'Thông tin tài khoản')
 
 @section('content')
     <div class="container">
-        <div class="row flex-lg-nowrap">
-            <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
-                <div class="card">
-                    <div class="e-navlist e-navlist--active-bg">
-                        <ul class="nav">
-                            <li class="nav-item"><a class="nav-link px-2 active" href="index.html"><i
-                                        class="fa fa-fw fa-arrow-left mr-1"></i><span>Back to home</span></a></li>
-                            <li class="nav-item"><a class="nav-link px-2"
-                                    href="https://www.bootdey.com/snippets/view/bs4-edit-profile-page" target="__blank"><i
-                                        class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
                 <div class="row">
-                    <div class="col mb-3">
+                    <div class="col mt-3 mb-3">
                         <div class="card">
+                            <div class="card-header cart-empty">
+                                <h3 class="mb-0">Thông tin tài khoản</h3>
+                            </div>
                             <div class="card-body">
                                 <div class="e-profile">
                                     <div class="row">
                                         <div class="col-12 col-sm-auto mb-3">
                                             <div class="mx-auto" style="width: 140px;">
-                                                <div class="d-flex justify-content-center align-items-center rounded"
-                                                    style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                    <span
-                                                        style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
-                                                </div>
+                                                <img class="d-flex img-fluid justify-content-center align-items-center rounded"
+                                                    src="{{ $user->avatar }}" />
                                             </div>
                                         </div>
                                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                             <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>
-                                                <p class="mb-0">@johnny.s</p>
-                                                <div class="text-muted"><small>Last seen 2 hours ago</small></div>
+                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap" style="color:#000000">
+                                                    {{ $user->fullname }}</h4>
+                                                <p class="mb-0">{{ $user->email }}</p>
                                                 <div class="mt-2">
                                                     <button class="btn btn-primary" type="button">
                                                         <i class="fa fa-fw fa-camera"></i>
-                                                        <input type="file"
-                                                            class="btn-change-photo position-absolute ">Change
-                                                        Photo
+                                                        <input type="file" class="btn-change-photo position-absolute ">Chọn
+                                                        ảnh
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="text-center text-sm-right">
-                                                <span class="badge badge-secondary">administrator</span>
-                                                <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                                                <span class="badge badge-secondary">{{ $user->role }}</span>
+                                                <div class="text-muted">
+                                                    <small>{{ date('d/m/Y', strtotime($user->created_at)) }}</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <ul class="nav nav-tabs">
-                                        <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                                        <li class="nav-item"><a href="" class="active nav-link">Cài Đặt</a></li>
                                     </ul>
                                     <div class="tab-content pt-3">
                                         <div class="tab-pane active">
@@ -65,17 +52,19 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label>Full Name</label>
+                                                                    <label>Họ: </label>
                                                                     <input class="form-control" type="text" name="name"
-                                                                        placeholder="John Smith" value="John Smith">
+                                                                        placeholder="{{ $user->lastname }}"
+                                                                        value="{{ $user->lastname }}">
                                                                 </div>
                                                             </div>
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label>Username</label>
+                                                                    <label>Tên: </label>
                                                                     <input class="form-control" type="text"
-                                                                        name="username" placeholder="johnny.s"
-                                                                        value="johnny.s">
+                                                                        name="username"
+                                                                        placeholder="{{ $user->firstname }}"
+                                                                        value="{{ $user->firstname }}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -84,16 +73,25 @@
                                                                 <div class="form-group">
                                                                     <label>Email</label>
                                                                     <input class="form-control" type="text"
-                                                                        placeholder="user@example.com">
+                                                                        placeholder="{{ $user->email }}">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col mb-3">
                                                                 <div class="form-group">
-                                                                    <label>About</label>
-                                                                    <textarea class="form-control" rows="5"
-                                                                        placeholder="My Bio"></textarea>
+                                                                    <label>Số điện thoại</label>
+                                                                    <input class="form-control" type="text"
+                                                                        placeholder="{{ $user->telephone }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col mb-3">
+                                                                <div class="form-group">
+                                                                    <label>Chi tiết địa chỉ:</label>
+                                                                    <input class="form-control" type="text"
+                                                                        placeholder="{{ $user->address->address }}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -101,11 +99,11 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12 col-sm-6 mb-3">
-                                                        <div class="mb-2"><b>Change Password</b></div>
+                                                        <div class="mb-2"><b>Đổi mật khẩu</b></div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label>Current Password</label>
+                                                                    <label>Mật khẩu hiện tại</label>
                                                                     <input class="form-control" type="password"
                                                                         placeholder="••••••">
                                                                 </div>
@@ -114,7 +112,7 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label>New Password</label>
+                                                                    <label>Mật khẩu mới</label>
                                                                     <input class="form-control" type="password"
                                                                         placeholder="••••••">
                                                                 </div>
@@ -123,81 +121,74 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <label>Confirm <span
-                                                                            class="d-none d-xl-inline">Password</span></label>
+                                                                    <label>Xác nhận mật khẩu <span
+                                                                            class="d-none d-xl-inline">Mật
+                                                                            khẩu</span></label>
                                                                     <input class="form-control" type="password"
                                                                         placeholder="••••••">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                                        <div class="mb-2"><b>Keeping in Touch</b></div>
+                                                    <div class="col-12 col-sm-6 mb-3">
+                                                        <div class="mb-2"><b>Địa chỉ</b></div>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label>Email Notifications</label>
-                                                                <div class="custom-controls-stacked px-2">
-                                                                    <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            id="notifications-blog" checked="">
-                                                                        <label class="custom-control-label"
-                                                                            for="notifications-blog">Blog posts</label>
-                                                                    </div>
-                                                                    <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            id="notifications-news" checked="">
-                                                                        <label class="custom-control-label"
-                                                                            for="notifications-news">Newsletter</label>
-                                                                    </div>
-                                                                    <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            id="notifications-offers" checked="">
-                                                                        <label class="custom-control-label"
-                                                                            for="notifications-offers">Personal
-                                                                            Offers</label>
-                                                                    </div>
-                                                                </div>
+                                                                <label for="country">Tỉnh: </label>
+                                                                <select name="province" id="province"
+                                                                    class="form-control mb-3">
+                                                                    <option value="">Chọn tỉnh</option>
+                                                                    @foreach (Helpers::getAllProvince() as $province)
+                                                                        <option value="{{ $province->id }}"
+                                                                            {{ $province->id == $user->address->province->id ? ' selected' : '' }}>
+                                                                            {{ $province->name_with_type }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="country">Thành phố/Quận: </label>
+                                                                <select name="district" id="district"
+                                                                    class="form-control mb-3">
+                                                                    @foreach (Helpers::getDistricts($user->address->province->id) as $district)
+                                                                        <option value="{{ $district->id }}"
+                                                                            {{ $district->id == $user->address->district->id ? ' selected="selected"' : '' }}>
+                                                                            {{ $district->name_with_type }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="country">Phường/Xã: </label>
+                                                                <select name="ward" id="ward" class="form-control">
+                                                                    @foreach (Helpers::getWards($user->address->district->id) as $ward)
+                                                                        <option value="{{ $ward->id }}"
+                                                                            {{ $ward->id == $user->address->ward->id ? ' selected' : '' }}>
+                                                                            {{ $ward->name_with_type }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col d-flex justify-content-end">
-                                                        <button class="btn btn-primary" type="submit">Save
-                                                            Changes</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="row">
+                                        <div class="col d-flex justify-content-end">
+                                            <button class="btn btn-primary" type="submit">Cập nhật</button>
+                                        </div>
+                                    </div>
+                                    </form>
 
-                    <div class="col-12 col-md-3 mb-3">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="px-xl-3">
-                                    <button class="btn btn-block btn-secondary">
-                                        <i class="fa fa-sign-out"></i>
-                                        <span>Logout</span>
-                                    </button>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="card-title font-weight-bold">Support</h6>
-                                <p class="card-text">Get fast, free help from our friendly assistants.</p>
-                                <button type="button" class="btn btn-primary">Contact Us</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+    </div>
     </div>
 @endsection
