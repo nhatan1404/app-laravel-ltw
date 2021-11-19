@@ -151,11 +151,14 @@
                                                                 <label for="country">Thành phố/Quận: </label>
                                                                 <select name="district" id="district"
                                                                     class="form-control mb-3">
-                                                                    @foreach (Helpers::getDistricts($user->address->province->id) as $district)
-                                                                        <option value="{{ $district->id }}"
-                                                                            {{ $district->id == $user->address->district->id ? ' selected="selected"' : '' }}>
-                                                                            {{ $district->name_with_type }}</option>
-                                                                    @endforeach
+                                                                    <option value="">Chọn thành phố/quận</option>
+                                                                    @if ($user->address)
+                                                                        @foreach (Helpers::getDistricts($user->address->province->id) as $district)
+                                                                            <option value="{{ $district->id }}"
+                                                                                {{ $district->id == $user->address->district->id ? ' selected="selected"' : '' }}>
+                                                                                {{ $district->name_with_type }}</option>
+                                                                        @endforeach
+                                                                    @endif
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -163,11 +166,14 @@
                                                             <div class="col">
                                                                 <label for="country">Phường/Xã: </label>
                                                                 <select name="ward" id="ward" class="form-control">
-                                                                    @foreach (Helpers::getWards($user->address->district->id) as $ward)
-                                                                        <option value="{{ $ward->id }}"
-                                                                            {{ $ward->id == $user->address->ward->id ? ' selected' : '' }}>
-                                                                            {{ $ward->name_with_type }}</option>
-                                                                    @endforeach
+                                                                    <option value="">Chọn phường xã</option>
+                                                                    @if ($user->address)
+                                                                        @foreach (Helpers::getWards($user->address->district->id) as $ward)
+                                                                            <option value="{{ $ward->id }}"
+                                                                                {{ $ward->id == $user->address->ward->id ? ' selected' : '' }}>
+                                                                                {{ $ward->name_with_type }}</option>
+                                                                        @endforeach
+                                                                    @endif
                                                                 </select>
                                                             </div>
                                                         </div>

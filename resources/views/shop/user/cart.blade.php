@@ -70,7 +70,7 @@
                                         <select name="" id="province" class="form-control">
                                             @foreach (Helpers::getAllProvince() as $province)
                                                 <option value="{{ $province->id }}"
-                                                    {{ $province->id == $user->address->province->id ? ' selected' : '' }}>
+                                                    {{ $user->address && $province->id == $user->address->province->id ? ' selected' : '' }}>
                                                     {{ $province->name_with_type }}</option>
                                             @endforeach
                                         </select>
@@ -81,11 +81,13 @@
                                     <div class="select-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                         <select name="" id="district" class="form-control">
-                                            @foreach (Helpers::getDistricts($user->address->province->id) as $district)
-                                                <option value="{{ $district->id }}"
-                                                    {{ $district->id == $user->address->district->id ? ' selected="selected"' : '' }}>
-                                                    {{ $district->name_with_type }}</option>
-                                            @endforeach
+                                            @if ($user->address)
+                                                @foreach (Helpers::getDistricts($user->address->province->id) as $district)
+                                                    <option value="{{ $district->id }}"
+                                                        {{ $district->id == $user->address->district->id ? ' selected="selected"' : '' }}>
+                                                        {{ $district->name_with_type }}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -94,11 +96,14 @@
                                     <div class="select-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                         <select name="" id="ward" class="form-control">
-                                            @foreach (Helpers::getWards($user->address->district->id) as $ward)
-                                                <option value="{{ $ward->id }}"
-                                                    {{ $ward->id == $user->address->ward->id ? ' selected' : '' }}>
-                                                    {{ $ward->name_with_type }}</option>
-                                            @endforeach
+                                            <option value="">Chọn phường xã</option>
+                                            @if ($user->address)
+                                                @foreach (Helpers::getWards($user->address->district->id) as $ward)
+                                                    <option value="{{ $ward->id }}"
+                                                        {{ $ward->id == $user->address->ward->id ? ' selected' : '' }}>
+                                                        {{ $ward->name_with_type }}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
