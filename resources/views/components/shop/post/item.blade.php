@@ -9,11 +9,13 @@
                 </div>
                 <div><a href="{{ route('posts-detail', [$post->slug]) }}">{{ $post->author->fullname }}</a>
                 </div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span>
+                <div><a href="{{ route('posts-detail', [$post->slug]) }}" class="meta-chat"><span
+                            class="icon-chat"></span>
                         3</a>
                 </div>
             </div>
-            <h3 class="heading"><a href="#">{{ $post->title }}</a></h3>
+            <h3 class="heading"><a href="{{ route('posts-detail', [$post->slug]) }}">{{ $post->title }}</a>
+            </h3>
             <p>{{ $post->description }}</p>
             <p><a href="{{ route('posts-detail', [$post->slug]) }}" class="btn btn-primary py-2 px-3">Chi
                     tiết</a></p>

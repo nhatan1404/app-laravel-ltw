@@ -2,14 +2,15 @@
 @section('title', 'Bài Viết')
 
 @section('content')
-    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
+    <div class="hero-wrap hero-bread" style="background-image: url('{{ asset('shop/images/bg_1.jpg') }}');">
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span>
-                        <span>Blog</span>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('home') }}">Trang
+                                Chủ</a></span>
+                        <span>Tin Tức</span>
                     </p>
-                    <h1 class="mb-0 bread">Blog</h1>
+                    <h1 class="mb-0 bread">Tin Tức</h1>
                 </div>
             </div>
         </div>
@@ -31,7 +32,7 @@
                         <form action="#" class="search-form">
                             <div class="form-group">
                                 <span class="icon ion-ios-search"></span>
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm">
                             </div>
                         </form>
                     </div>
@@ -40,28 +41,6 @@
 
                     <x-Shop.Post.ListRecent :posts="$recent_posts" name="Bài Viết Ngẫu Nhiên" />
 
-                    <div class="sidebar-box ftco-animate">
-                        <h3 class="heading">Tag Cloud</h3>
-                        <div class="tagcloud">
-                            <a href="#" class="tag-cloud-link">fruits</a>
-                            <a href="#" class="tag-cloud-link">tomatoe</a>
-                            <a href="#" class="tag-cloud-link">mango</a>
-                            <a href="#" class="tag-cloud-link">apple</a>
-                            <a href="#" class="tag-cloud-link">carrots</a>
-                            <a href="#" class="tag-cloud-link">orange</a>
-                            <a href="#" class="tag-cloud-link">pepper</a>
-                            <a href="#" class="tag-cloud-link">eggplant</a>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-box ftco-animate">
-                        <h3 class="heading">Paragraph</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus
-                            voluptate
-                            quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique,
-                            inventore eos
-                            fugit cupiditate numquam!</p>
-                    </div>
                 </div>
 
             </div>
