@@ -17,7 +17,7 @@
                                         <div class="col-12 col-sm-auto mb-3">
                                             <div class="mx-auto" style="width: 140px;">
                                                 <img class="d-flex img-fluid justify-content-center align-items-center rounded"
-                                                    src="{{ $user->avatar }}" />
+                                                    src="{{ $user->avatar ? $user->avatar :  asset('/images/default-avatar.png') }}" />
                                             </div>
                                         </div>
                                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
