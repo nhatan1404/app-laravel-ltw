@@ -6,7 +6,7 @@
         <x-Admin.Form.Input name="Tiêu đề" property="title" placeholder="Nhập tiêu đề" value="{{ old('title') }}" />
 
         <x-Admin.Form.Textarea name=" Mô tả" property="description" placeholder="" value="{{ old('description') }}"
-            placeholder="Nhập mô tả" />
+            placeholder="Nhập mô tả" rows="5"/>
 
 
         <x-Admin.Form.Input name="Chiết khấu(%)" property="discount" type="number" placeholder="Nhập chiết khấu"

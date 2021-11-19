@@ -6,13 +6,13 @@
         <x-Admin.Form.Input name="Tiêu đề" property="title" placeholder="Nhập tiêu đề" value="{{ $product->title }}" />
 
         <x-Admin.Form.Textarea name=" Mô tả" property="description" placeholder="" value="{{ $product->description }}"
-            placeholder="Nhập mô tả" />
+            placeholder="Nhập mô tả" rows="5" />
 
 
         <x-Admin.Form.Input name="Chiết khấu(%)" property="discount" type="number" placeholder="Nhập chiết khấu"
             value="{{ $product->discount }}" min="0" max="100" />
 
-            <x-Admin.Form.Input name="Số lượng" property="quantity" type="number" placeholder="Nhập số lượng"
+        <x-Admin.Form.Input name="Số lượng" property="quantity" type="number" placeholder="Nhập số lượng"
             value="{{ $product->quantity }}" />
 
         <x-Admin.Form.Select name="Danh mục" property="category_id">
