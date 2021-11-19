@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::orderBy('created_at', 'DESC')->where('status', 'active')->paginate(8);
+        $products = Product::orderBy('created_at', 'DESC')->where('status', 'active')->paginate(12);
 
         if ($request->ajax()) {
             $html = view('shop.product.list', compact('products'))->render();
