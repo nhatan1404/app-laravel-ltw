@@ -38,13 +38,18 @@ Route::get('/cart/{id}', 'CartController@addToCart')->name('add-cart')->middlewa
 Route::put('/cart/{id}', 'CartController@updateCart')->name('update-cart')->middleware('auth');
 Route::delete('/cart/{id}', 'CartController@removeCart')->name('remove-cart')->middleware('auth', 'throttle:30,1');
 Route::get('/checkout', 'HomeController@checkout')->name('checkout')->middleware('auth');
+Route::post('/order', 'HomeController@order')->name('order')->middleware('auth');
 
+// Address
+Route::get('/address/provinces', 'AddressController@getProvinces')->name('get-provinces')->middleware('auth');
+Route::get('/address/districts/{id}', 'AddressController@getDistricts')->name('get-districts')->middleware('auth');
+Route::get('/address/wards/{id}', 'AddressController@getWards')->name('get-wards')->middleware('auth');
 
 // User
-Route::get('/user/login', 'HomeController@login')->name('login');
+Route::get('/user/login', 'HomeController@login')->name('user-login');
 Route::post('/user/login', 'Auth\LoginController@login');
 Route::post('/user/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('user/register', 'HomeController@register')->name('register');
+Route::get('user/register', 'HomeController@register')->name('user-register');
 Route::post('user/register', 'Auth\RegisterController@register');
 Route::get('/profile/{id}', 'HomeController@profile')->name('profile');
 
