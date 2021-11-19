@@ -14,11 +14,12 @@
 
     <td class="quantity">
         <div class="input-group mb-3">
-            <input type="text" name="quantity" data-id="{{ $item->id }}" class="quantity form-control input-number"
-                value="{{ $item->quantity }}" min="1" max="100">
+            <input type="number" name="quantity" data-id="{{ $item->id }}"
+                onkeyup="updateCart(event, {{ $item->id }})"  oninput="updateCart(event, {{ $item->id }})" class="quantity form-control input-number"
+                value="{{ $item->quantity }}" min="1" max="{{ $item->product->quantity }}">
         </div>
     </td>
 
     <td class="total" data-price="{{ $item->id }}">
-        {{ Helpers::formatCurrency($item->product->price * $item->quantity) }} đ</td>
+        {{ Helpers::formatCurrency($item->product->price * $item->quantity) }} VNĐ</td>
 </tr>
