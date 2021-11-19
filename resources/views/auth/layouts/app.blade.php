@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="bg-primary">
+<body class="bg-primary" style="background-color:#82ae46 !important; ">
   <div id="layoutAuthentication">
     <div id="layoutAuthentication_content">
       <main>
