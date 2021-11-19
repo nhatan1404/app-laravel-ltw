@@ -42,8 +42,8 @@ Route::post('/order', 'HomeController@order')->name('order')->middleware('auth')
 
 // Address
 Route::get('/address/provinces', 'AddressController@getProvinces')->name('get-provinces')->middleware('auth');
-Route::get('/address/districts/{id}', 'AddressController@getDistricts')->name('get-districts')->middleware('auth');
-Route::get('/address/wards/{id}', 'AddressController@getWards')->name('get-wards')->middleware('auth');
+Route::get('/address/districts/{id}', 'AddressController@getDistricts')->name('get-districts');
+Route::get('/address/wards/{id}', 'AddressController@getWards')->name('get-wards');
 
 // User
 Route::get('/user/login', 'HomeController@login')->name('user-login');
