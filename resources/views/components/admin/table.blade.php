@@ -25,7 +25,7 @@
                             {{ $slot }}
                         </tbody>
                     </table>
-                    <span style="float:right">{{ $value->links() }}</span>
+                    <span style="float:right">{{ $value->links('vendor.pagination.bootstrap-4') }}</span>
                 @else
                     <h6 class="text-center">Danh sách {{ $name }} trống.</h6>
                 @endif
