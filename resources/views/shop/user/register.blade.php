@@ -174,7 +174,8 @@
                         </form>
                     </div>
                     <div class="card-footer text-center">
-                        <div class="small"><a href="{{ route('login') }}">Đã có tài khoản? Đăng nhập</a></div>
+                        <div class="small"><a href="{{ route('user-login') }}">Đã có tài khoản? Đăng nhập</a>
+                        </div>
                     </div>
                 </div>
             </div>
