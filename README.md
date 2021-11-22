@@ -2,6 +2,7 @@
 
 ## Tên đồ án: Website bán rau, củ quả ,trái cây
 ## [Demo trang web ](https://nhatan.ga)
+## [Link github của nhóm ](https://github.com/nhatan1404/app-laravel-ltw)
 ### Danh sách thành viên
 -   Tống Khánh Nhật An - DH51804249
 -   Võ Ngọc Bội - DH51804310
@@ -43,24 +44,24 @@ php artisan serve
 
 ## Tính năng yêu cầu
 ### 1. Trang Người dùng:
-  - [x] Trang chủ
-  - [x] Sản phẩm
-  - [x] Chi Tiết Sản Phẩm 
-  - [x] Danh mục sản phẩm
-  - [x] Danh mục bài viết
-  - [x] Bài viết
-  - [x] Chi tiết tin tức
-  - [x] Đăng nhập 
-  - [x] Đăng ký 
-  - [x] Trang thông tin cá nhân
-  - [x] Trang Liên Hệ
-  - [x] Trang giỏ hàng
-  - [x] Trang thanh toán
+  :heavy_check_mark: Trang chủ
+  :heavy_check_mark: Sản phẩm
+  :heavy_check_mark: Chi Tiết Sản Phẩm 
+  :heavy_check_mark: Danh mục sản phẩm
+  :heavy_check_mark: Danh mục bài viết
+  :heavy_check_mark: Bài viết
+  :heavy_check_mark: Chi tiết tin tức
+  :heavy_check_mark: Đăng nhập 
+  :heavy_check_mark: Đăng ký 
+  :heavy_check_mark: Trang thông tin cá nhân
+  :heavy_check_mark: Trang Liên Hệ
+  :heavy_check_mark: Trang giỏ hàng
+  :heavy_check_mark: Trang thanh toán
 ## 2. Trang Admin:
- - :heavy_check_mark: Đăng nhập
- - [x] Quản lý gười dùng (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- - [x] Quản lý  danh mục  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- - [x] Quản lý  sản phẩm (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- - [x] Quản lý  đơn hàng  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- - [x] Quản lý  bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- - [x] Quản lý danh mục bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+ :heavy_check_mark: Đăng nhập
+  :heavy_check_mark: Quản lý gười dùng (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  :heavy_check_mark: Quản lý  danh mục  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  :heavy_check_mark: Quản lý  sản phẩm (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  :heavy_check_mark: Quản lý  đơn hàng  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  :heavy_check_mark:Quản lý  bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  :heavy_check_mark:Quản lý danh mục bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
