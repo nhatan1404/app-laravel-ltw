@@ -43,24 +43,24 @@ php artisan serve
 
 ## Tính năng yêu cầu
 ### 1. Trang Người dùng:
-  [x] Trang chủ
-  [x] Sản phẩm
-  [x] Chi Tiết Sản Phẩm 
-  [x] Danh mục sản phẩm
-  [x] Danh mục bài viết
-  [x] Bài viết
-  [x] Chi tiết tin tức
-  [x] Đăng nhập 
-  [x] Đăng ký 
-  [x] Trang thông tin cá nhân
-  [x] Trang Liên Hệ
-  [x] Trang giỏ hàng
-  [x] Trang thanh toán
+  - [x] Trang chủ
+  - [x] Sản phẩm
+  - [x] Chi Tiết Sản Phẩm 
+  - [x] Danh mục sản phẩm
+  - [x] Danh mục bài viết
+  - [x] Bài viết
+  - [x] Chi tiết tin tức
+  - [x] Đăng nhập 
+  - [x] Đăng ký 
+  - [x] Trang thông tin cá nhân
+  - [x] Trang Liên Hệ
+  - [x] Trang giỏ hàng
+  - [x] Trang thanh toán
 ## 2. Trang Admin:
- [x] Đăng nhập
- [x] Quản lý gười dùng (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- [x] Quản lý  danh mục  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- [x] Quản lý  sản phẩm (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- [x] Quản lý  đơn hàng  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- [x] Quản lý  bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
- [x] Quản lý danh mục bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+ - [x] Đăng nhập
+ - [x] Quản lý gười dùng (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+ - [x] Quản lý  danh mục  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+ - [x] Quản lý  sản phẩm (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+ - [x] Quản lý  đơn hàng  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+ - [x] Quản lý  bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+ - [x] Quản lý danh mục bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
