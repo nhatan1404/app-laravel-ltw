@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 20, 2021 at 02:44 AM
+-- Generation Time: Nov 22, 2021 at 08:34 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -65,16 +65,6 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`id`, `user_id`, `order_id`, `total`, `status`, `created_at`, `updated_at`) VALUES
-(3, 1, NULL, '20000', 'inactive', '2021-11-18 06:25:13', '2021-11-18 06:25:13'),
-(4, 1, NULL, '48500', 'inactive', '2021-11-18 06:27:10', '2021-11-18 06:57:37'),
-(5, 1, NULL, NULL, 'active', '2021-11-18 18:15:20', '2021-11-18 18:15:20'),
-(6, 9, NULL, '18000', 'active', '2021-11-19 08:36:56', '2021-11-19 08:36:56');
-
 -- --------------------------------------------------------
 
 --
@@ -89,17 +79,6 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `cart_items`
---
-
-INSERT INTO `cart_items` (`id`, `cart_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(8, 3, 16, 1, '2021-11-18 06:25:13', '2021-11-18 06:25:13'),
-(22, 4, 19, 1, '2021-11-18 06:57:15', '2021-11-18 06:57:15'),
-(23, 4, 18, 1, '2021-11-18 06:57:16', '2021-11-18 06:57:16'),
-(24, 4, 17, 1, '2021-11-18 06:57:17', '2021-11-18 06:57:17'),
-(27, 6, 18, 1, '2021-11-19 08:36:56', '2021-11-19 08:36:56');
 
 --
 -- Triggers `cart_items`
@@ -963,7 +942,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `order_number`, `firstname`, `lastname`, `address`, `telephone`, `email`, `note`, `total`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-(3, '#0000000001', 'An', 'Nhật', '180 Cao Lỗ', '0901234567', 'admin@gmail.com', NULL, 20000, 'cancel', 1, '2021-11-18 06:25:21', '2021-11-18 07:17:07');
+(3, '#0000000001', 'An', 'Nhật', '180 Cao Lỗ', '0901234567', 'admin@gmail.com', NULL, 20000, 'cancel', 1, '2021-11-18 06:25:21', '2021-11-18 07:17:07'),
+(5, '#0000000002', 'An', 'Nhật', '180 Cao Lỗ', '0901234567', 'admin@gmail.com', NULL, 17500, 'new', 1, '2021-11-22 00:31:35', '2021-11-22 00:31:35'),
+(6, '#0000000003', 'An', 'Nhật', '180 Cao Lỗ', '0901234567', 'admin@gmail.com', NULL, 105500, 'new', 1, '2021-11-22 00:32:22', '2021-11-22 00:32:22');
 
 -- --------------------------------------------------------
 
@@ -986,7 +967,12 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(6, 3, 16, 1, 20000, '2021-11-18 13:25:21', '2021-11-18 13:25:21');
+(6, 3, 16, 1, 20000, '2021-11-18 13:25:21', '2021-11-18 13:25:21'),
+(10, 5, 14, 1, 17500, '2021-11-22 07:31:35', '2021-11-22 07:31:35'),
+(11, 6, 30, 1, 20000, '2021-11-22 07:32:22', '2021-11-22 07:32:22'),
+(12, 6, 31, 1, 17500, '2021-11-22 07:32:22', '2021-11-22 07:32:22'),
+(13, 6, 34, 1, 33000, '2021-11-22 07:32:22', '2021-11-22 07:32:22'),
+(14, 6, 32, 1, 35000, '2021-11-22 07:32:22', '2021-11-22 07:32:22');
 
 -- --------------------------------------------------------
 
@@ -12102,13 +12088,13 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -12138,13 +12124,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
