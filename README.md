@@ -57,7 +57,7 @@ php artisan serve
   - [x] Trang giỏ hàng
   - [x] Trang thanh toán
 ## 2. Trang Admin:
- - [x] Đăng nhập
+ - :heavy_check_mark: Đăng nhập
  - [x] Quản lý gười dùng (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
  - [x] Quản lý  danh mục  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
  - [x] Quản lý  sản phẩm (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
