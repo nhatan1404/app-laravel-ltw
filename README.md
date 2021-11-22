@@ -44,24 +44,24 @@ php artisan serve
 
 ## Tính năng yêu cầu
 ### 1. Trang Người dùng:
-  :heavy_check_mark: Trang chủ
-  :heavy_check_mark: Sản phẩm
-  :heavy_check_mark: Chi Tiết Sản Phẩm 
-  :heavy_check_mark: Danh mục sản phẩm
-  :heavy_check_mark: Danh mục bài viết
-  :heavy_check_mark: Bài viết
-  :heavy_check_mark: Chi tiết tin tức
-  :heavy_check_mark: Đăng nhập 
-  :heavy_check_mark: Đăng ký 
-  :heavy_check_mark: Trang thông tin cá nhân
-  :heavy_check_mark: Trang Liên Hệ
-  :heavy_check_mark: Trang giỏ hàng
-  :heavy_check_mark: Trang thanh toán
+  - :heavy_check_mark: Trang chủ
+  - :heavy_check_mark: Sản phẩm
+  - :heavy_check_mark: Chi Tiết Sản Phẩm 
+  - :heavy_check_mark: Danh mục sản phẩm
+  - :heavy_check_mark: Danh mục bài viết
+  - :heavy_check_mark: Bài viết
+  - :heavy_check_mark: Chi tiết tin tức
+  - :heavy_check_mark: Đăng nhập 
+  - :heavy_check_mark: Đăng ký 
+  - :heavy_check_mark: Trang thông tin cá nhân
+  - :heavy_check_mark: Trang Liên Hệ
+  - :heavy_check_mark: Trang giỏ hàng
+  - :heavy_check_mark: Trang thanh toán
 ## 2. Trang Admin:
- :heavy_check_mark: Đăng nhập
-  :heavy_check_mark: Quản lý gười dùng (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
-  :heavy_check_mark: Quản lý  danh mục  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
-  :heavy_check_mark: Quản lý  sản phẩm (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
-  :heavy_check_mark: Quản lý  đơn hàng  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
-  :heavy_check_mark:Quản lý  bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
-  :heavy_check_mark:Quản lý danh mục bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  - :heavy_check_mark: Đăng nhập
+  - :heavy_check_mark: Quản lý gười dùng (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  - :heavy_check_mark: Quản lý  danh mục  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  - :heavy_check_mark: Quản lý  sản phẩm (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  - :heavy_check_mark: Quản lý  đơn hàng  (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  - :heavy_check_mark:Quản lý  bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
+  - :heavy_check_mark:Quản lý danh mục bài viết (Hiển thị - Thêm - Xóa - Sửa - Xem chi tiết)
