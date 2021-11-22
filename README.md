@@ -28,17 +28,24 @@
 
 -   Trang web yêu cầu [php ^7.4](https://www.php.net/) và [mysql 5.^](https://www.mysql.com/) cùng với trình quản lý thư viện [composer](https://getcomposer.org/) để chạy
 
+### Yêu cầu:
+- Vô source code đổi tên file **.env.example** thành **.env**
+
+### Config URL
+- Vô file **.env** để sửa lại link trang web
+```sh
+APP_URL=//127.0.0.1:8000 /*Sua url*/
+```
 ### Config database:
 
 -   Import file database app.sql (mysql) trong source code
 -   Vô file **.env** thiêt lập lại config database
--   Mặc định khi chạy xampp trong source sẽ như sau với tên databse là **app**
 
 ```sh
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE= app
+DB_DATABASE= app /*Sua ten*/
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -50,6 +57,7 @@ php artisan key:generate
 php artisan storage:link
 php artisan serve
 ```
+- Truy cập trang web theo đường link mặc định (có thể khác port) là [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ### Thông tin đăng nhập hệ thống
 
