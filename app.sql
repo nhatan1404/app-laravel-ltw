@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2021 at 08:34 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Dec 23, 2021 at 02:57 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,6 +48,23 @@ INSERT INTO `address` (`id`, `address`, `province_id`, `district_id`, `ward_id`,
 (4, '152 Cao Lỗ', 6, 61, 1894, '2021-11-19 06:42:25', '2021-11-19 06:42:25'),
 (5, '143 Cao Lỗ', 79, 776, 27409, '2021-11-19 07:05:26', '2021-11-19 07:05:26'),
 (6, 'TPHCM', 22, 194, 6718, '2021-11-19 08:36:46', '2021-11-19 08:36:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banners`
+--
+
+CREATE TABLE `banners` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -11949,6 +11966,13 @@ ALTER TABLE `address`
   ADD KEY `ward_id` (`ward_id`);
 
 --
+-- Indexes for table `banners`
+--
+ALTER TABLE `banners`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `banners_slug_unique` (`slug`);
+
+--
 -- Indexes for table `carts`
 --
 ALTER TABLE `carts`
@@ -12083,6 +12107,12 @@ ALTER TABLE `wards`
 --
 ALTER TABLE `address`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `banners`
+--
+ALTER TABLE `banners`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `carts`
