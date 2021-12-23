@@ -47,6 +47,11 @@
             <i class="fas fa-file-invoice-dollar"></i>
             <span>Mã Giảm Giá</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('banner.index') }}">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Banner</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">

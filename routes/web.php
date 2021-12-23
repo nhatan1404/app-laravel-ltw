@@ -68,6 +68,7 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth']], function () {
         'user' => 'UserController',
         'posts' => 'PostsController',
         'posts-category' => 'PostsCategoryController',
+        'banner' => 'BannerController@Controller'
     ]);
 });
 
