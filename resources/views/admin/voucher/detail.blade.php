@@ -33,6 +33,15 @@
                                     <td>{{ $voucher->type == 'fixed' ? 'Giá tiền' : 'Phần trăm' }}</td>
                                 </tr>
                                 <tr>
+                                    <td>Giá trị</td>
+                                    <td>{{ $voucher->type == 'fixed' ? Helper::formatCurrency($voucher->value) : $voucher->value . '%' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Số lượt còn lại</td>
+                                    <td>{{ $voucher->time }} lượt</td>
+                                </tr>
+                                <tr>
                                     <td>Trạng thái</td>
                                     <td>{{ $voucher->status == 'active' ? 'Còn hiệu lực' : 'Hết hạn' }}</td>
                                 </tr>

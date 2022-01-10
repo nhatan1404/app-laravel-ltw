@@ -9,11 +9,11 @@ class Voucher extends Model
 {
     use HasFactory;
     protected $table = 'vouchers';
-    protected $fillable = ['code', 'type', 'value', 'status'];
+    protected $fillable = ['code', 'type', 'value', 'status', 'time'];
 
     public static function getCountActiveVoucher()
     {
-        $data = Voucher::where('status', 'active')->count();
+        $data = Voucher::where('status', 'active')->where('time', '>', 0)->count();
         if ($data) {
             return $data;
         }

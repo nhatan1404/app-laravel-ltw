@@ -8,6 +8,7 @@
         'code' => 'Mã',
         'type' => 'Loại',
         'value' => 'Giá Trị',
+        'time' => 'Số lượt còn lại',
         'status' => 'Trạng Thái',
         'action' => '',
     ];
@@ -27,11 +28,12 @@
                 </td>
                 <td>
                     @if ($voucher->type == 'fixed')
-                        ${{ number_format($voucher->value, 2) }}
+                        {{ Helpers::formatCurrency($voucher->value) }}
                     @else
                         {{ $voucher->value }}%
                     @endif
                 </td>
+                <td>{{ $voucher->time }} lượt</td>
                 <td>
                     @if ($voucher->status == 'active')
                         <span class="badge badge-success">Còn hiệu lực</span>
@@ -40,7 +42,8 @@
                     @endif
                 </td>
                 <td>
-                    <x-Admin.ButtonAction :id="$voucher->id"  show="voucher.show" edit="voucher.edit" delete="voucher.destroy" />
+                    <x-Admin.ButtonAction :id="$voucher->id" show="voucher.show" edit="voucher.edit"
+                        delete="voucher.destroy" />
                 </td>
             </tr>
         @endforeach

@@ -13,6 +13,9 @@
         <x-Admin.Form.Input name="Giá trị" property="value" type="number" placeholder="Nhập giá trị"
             value="{{ $voucher->value }}" />
 
+        <x-Admin.Form.Input name="Số lượt sử dụng" property="time" type="number" placeholder="Nhập số lượt"
+            value="{{ $voucher->time }}" />
+
         <x-Admin.Form.Select name="Trạng thái" property="status">
             <option value="active" {{ $voucher->status == 'active' ? 'selected' : '' }}>Còn hiệu lực</option>
             <option value="inactive" {{ $voucher->status == 'inactive' ? 'selected' : '' }}>Hết hạn</option>
