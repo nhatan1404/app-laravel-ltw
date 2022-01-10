@@ -38,6 +38,7 @@ class VoucherController extends Controller
     {
         $messages = [
             'code.required' => 'Code không được bỏ trống',
+            'code.unique' => 'Code bị trùng',
             'code.string' => 'Code phải là chuỗi kí tự',
             'code.max' => 'Code không được lớn hơn 20 kí tự',
             'type.required' => 'Chưa chọn loại',
@@ -53,7 +54,7 @@ class VoucherController extends Controller
         ];
 
         $this->validate($request, [
-            'code' => 'required|string|max:20',
+            'code' => 'required|string|unique:vouchers|max:20',
             'type' => 'required|in:fixed,percent',
             'value' => 'required|numeric',
             'status' => 'required|in:active,inactive',
@@ -65,7 +66,7 @@ class VoucherController extends Controller
         if ($type == 'percent') {
             $this->validate($request, [
                 'value' => 'required|numeric|min:1|max:100',
-            ]);
+            ], $messages);
         }
 
         $data = $request->all();
@@ -133,6 +134,7 @@ class VoucherController extends Controller
 
         $messages = [
             'code.required' => 'Code không được bỏ trống',
+            'code.unique' => 'Code bị trùng',
             'code.string' => 'Code phải là chuỗi kí tự',
             'code.max' => 'Code không được lớn hơn 20 kí tự',
             'type.required' => 'Chưa chọn loại',
@@ -148,7 +150,7 @@ class VoucherController extends Controller
         ];
 
         $this->validate($request, [
-            'code' => 'required|string|max:20',
+            'code' => 'required|string|unique:vouchers|max:20',
             'type' => 'required|in:fixed,percent',
             'value' => 'required|numeric',
             'status' => 'required|in:active,inactive',
@@ -160,7 +162,7 @@ class VoucherController extends Controller
         if ($type == 'percent') {
             $this->validate($request, [
                 'value' => 'required|numeric|min:1|max:100',
-            ]);
+            ], $messages);
         }
 
 
