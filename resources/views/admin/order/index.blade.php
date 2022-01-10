@@ -16,7 +16,7 @@
     ];
     @endphp
 
-    <x-Admin.Table name="đơn đặt hàng" :columns="$columns" create="order.create" :value="$orders">
+    <x-Admin.Table name="đơn đặt hàng" :columns="$columns" create="order.create" :value="$orders" :isShowCreate='false'>
         @foreach ($orders as $order)
             <tr>
                 <td>{{ $order->id }}</td>
@@ -29,7 +29,7 @@
                     {!! Helpers::displayStatusOrder($order->status) !!}
                 </td>
                 <td>{{ Helpers::formatCurrency($order->total) }}</td>
-                <td>
+                <td class="text-center">
                     <a href="{{ route('order.show', $order->id) }}"
                         class="btn btn-primary btn-sm float-left mr-1 btn-circle" data-toggle="tooltip" title="Xem"
                         data-placement="bottom"><i class="fas fa-info-circle"></i></a>
@@ -40,5 +40,4 @@
             </tr>
         @endforeach
     </x-Admin.Table>
-    <!-- End Page Content -->
 @endsection

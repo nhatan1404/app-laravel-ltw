@@ -20,10 +20,3 @@
         <x-Admin.Form.Textarea name="Ghi chú" property="note" placeholder="Nhập ghi chú" :value="$order->note" />
     </x-Admin.Form.Edit>
 @endsection
-
-@push('scripts')
-    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-    <script>
-        $('#lfm').filemanager();
-    </script>
-@endpush
