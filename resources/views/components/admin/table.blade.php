@@ -7,8 +7,10 @@
         </div>
         <div class="card-header py-3">
             <h6 class="mt-2 font-weight-bold text-primary float-left">Danh Sách {{ ucwords($name) }}</h6>
-            <a href="{{ route($create) }}" class="btn btn-success btn-sm float-right" data-toggle="tooltip"
-                data-placement="bottom" title="Tạo {{ $name }}"><i class="fas fa-plus"></i> Tạo Mới</a>
+            @if ($isShowCreate)
+                <a href="{{ route($create) }}" class="btn btn-success btn-sm float-right" data-toggle="tooltip"
+                    data-placement="bottom" title="Tạo {{ $name }}"><i class="fas fa-plus"></i> Tạo Mới</a>
+            @endif
         </div>
         <div class="card-body">
             <div class="table-responsive">
