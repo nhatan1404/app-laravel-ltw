@@ -2,7 +2,6 @@
 @section('title', 'Danh Sách Sản Phẩm')
 
 @section('content')
-@section('content')
     @php
     $columns = [
         'id' => 'ID',
@@ -18,7 +17,7 @@
     ];
     @endphp
 
-    <x-Admin.Table name="danh mục sản phẩm" :columns="$columns" create="product.create" :value="$products">
+    <x-Admin.Table name="sản phẩm" :columns="$columns" create="product.create" :value="$products">
         @foreach ($products as $product)
             <tr>
                 <td>{{ $product->id }}</td>
@@ -47,8 +46,9 @@
                         <span class="badge badge-warning">Ẩn</span>
                     @endif
                 </td>
-                <td>
-                    <x-Admin.ButtonAction :id="$product->id"  show="product.show" edit="product.edit" delete="product.destroy" />
+                <td class="col-sm-1">
+                    <x-Admin.ButtonAction :id="$product->id" show="product.show" edit="product.edit"
+                        delete="product.destroy" />
                 </td>
             </tr>
         @endforeach
