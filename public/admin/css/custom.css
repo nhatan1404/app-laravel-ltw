@@ -1,5 +1,10 @@
-.btn-action {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+.order-info,
+.shipping-info {
+    background: #ececec;
+    padding: 20px;
+}
+
+.order-info h4,
+.shipping-info h4 {
+    text-decoration: underline;
 }
