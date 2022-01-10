@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="card-header py-3">
-            <h6 class="mt-2 font-weight-bold text-primary float-left">Danh Sách {{ ucfirst($name) }}</h6>
+            <h6 class="mt-2 font-weight-bold text-primary float-left">Danh Sách {{ ucwords($name) }}</h6>
             <a href="{{ route($create) }}" class="btn btn-success btn-sm float-right" data-toggle="tooltip"
                 data-placement="bottom" title="Tạo {{ $name }}"><i class="fas fa-plus"></i> Tạo Mới</a>
         </div>
