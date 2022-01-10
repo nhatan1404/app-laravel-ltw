@@ -2,23 +2,6 @@
 @section('title', 'Chi Tiết Đơn Đặt Hàng')
 
 @section('content')
-    @php
-    $columns = [
-        'id' => 'ID',
-        'order_number' => 'Mã Đơn',
-        'fullname' => 'Họ Tên',
-        'address' => 'Địa Chỉ',
-        'email' => 'Email',
-        'telephone' => 'Số Điện Thoại',
-        'status' => 'Trạng Thái',
-        'total' => 'Tổng',
-        'note' => 'Ghi chú',
-        '' => '',
-    ];
-
-    $orders = [$order];
-    @endphp
-
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
@@ -53,17 +36,17 @@
                                                 <td> : {{ $order->items->count() }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Order Status</td>
-                                                <td> : {{ $order->status }}</td>
+                                                <td>Trạng thái</td>
+                                                <td> : {!! Helpers::displayStatusOrder($order->status) !!}</td>
                                             </tr>
 
                                             <tr>
                                                 <td>Giảm giá</td>
-                                                <td> : O VNĐ</td>
+                                                <td> : {{ Helpers::formatCurrency($order->discount) }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Tổng số tiền</td>
-                                                <td> : {{ Helpers::formatCurrency($order->total) }} VNĐ</td>
+                                                <td> : {{ Helpers::formatCurrency($order->total) }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Ghi chú</td>
@@ -115,21 +98,52 @@
                 @endif
             </div>
         </div>
-    </div>
-@endsection
-
-@push('styles')
-    <style>
-        .order-info,
-        .shipping-info {
-            background: #ECECEC;
-            padding: 20px;
-        }
-
-        .order-info h4,
-        .shipping-info h4 {
-            text-decoration: underline;
-        }
-
-    </style>
-@endpush
+        <div class="card shadow my-4">
+            <div class="card-header py-3">
+                <h6 class="mt-2 font-weight-bold text-primary float-left">Danh sách sản phẩm</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTableCategory" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ảnh</th>
+                                <th>Tên</th>
+                                <th>Danh Mục</th>
+                                <th>Số Lượng</th>
+                                <th>Giá</th>
+                                <th>Tổng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($order->items as $item)
+                                <tr>
+                                    <td>{{ $item->id }}</td>
+                                    <td>
+                                        @if ($item->product->images)
+                                            @php
+                                                $photo = explode(',', $item->product->images);
+                                            @endphp
+                                            <img src="{{ $photo[0] }}" class="img-fluid zoom"
+                                                style="max-width:80px; max-height: 100px"
+                                                alt="{{ $item->product->title }}">
+                                        @else
+                                            <img src="{{ asset('admin/img/thumbnail-default.jpg') }}"
+                                                class="img-fluid" style="max-width:80px"
+                                                alt="{{ $item->product->title }}">
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->product->title }}</td>
+                                    <td>{{ $item->product->category->title }}</td>
+                                    <td>{{ $item->quantity }}</td>
+                                    <td>{{ Helpers::formatCurrency($item->price / $item->quantity) }}</td>
+                                    <td>{{ Helpers::formatCurrency($item->price) }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    @endsection
