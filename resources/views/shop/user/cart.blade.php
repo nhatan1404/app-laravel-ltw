@@ -6,7 +6,8 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('home') }}">Trang Chủ</a></span>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ route('home') }}">Trang
+                                Chủ</a></span>
                         <span>Giỏ Hàng</span>
                     </p>
                     <h1 class="mb-0 bread">Giỏ Hàng</h1>
@@ -45,91 +46,51 @@
                     </div>
                 </div>
                 <div class="row justify-content-end">
-                    <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+                    <div class="col-lg-6 mt-5 cart-wrap ftco-animate">
                         <div class="cart-total mb-3">
                             <h3>Mã giảm giá</h3>
                             <p>Nhập mã giảm giá nều bạn có</p>
-                            <form action="#" class="info">
+                            <form action="{{ route('apply-coupon') }}" method="post" class="info form-inline">
+                                {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="">Mã giảm giá:</label>
-                                    <input type="text" class="form-control text-left px-3" placeholder="">
+                                    <label for="coupon-input" class='mr-3'>Mã giảm giá:</label>
+                                    <input id='coupon-input' type="text" name='code' class="form-control text-left px-3"
+                                        value="{{ session('coupon') ? session('coupon')['code'] : '' }}">
+                                    <button class="btn btn-black py-3 px-4 ml-4" style='color: #fff !important'>Áp
+                                        dụng</button>
                                 </div>
                             </form>
+                            @if (session('error-coupon'))
+                                <span id='coupon-msg'
+                                    class="d-block text-danger mt-1">{{ session('error-coupon') }}</span>
+                            @elseif(session('success-coupon'))
+                                <span id='coupon-msg'
+                                    class="d-block text-success mt-1">{{ session('success-coupon') }}</span>
+                            @endif
                         </div>
-                        <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
                     </div>
-                    <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-                        <div class="cart-total mb-3">
-                            <h3>Ước tính phí vận chuyển và thuế</h3>
-                            <p>Nhập địa chỉ giao hàng của bạn để tính cước tính vận chuyển</p>
-                            <form action="#" class="info">
-                                <div class="form-group">
-                                    <label for="country">Tỉnh: </label>
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="province" class="form-control">
-                                            @foreach (Helpers::getAllProvince() as $province)
-                                                <option value="{{ $province->id }}"
-                                                    {{ $user->address && $province->id == $user->address->province->id ? ' selected' : '' }}>
-                                                    {{ $province->name_with_type }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="country">Thành phố/Quận: </label>
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="district" class="form-control">
-                                            @if ($user->address)
-                                                @foreach (Helpers::getDistricts($user->address->province->id) as $district)
-                                                    <option value="{{ $district->id }}"
-                                                        {{ $district->id == $user->address->district->id ? ' selected="selected"' : '' }}>
-                                                        {{ $district->name_with_type }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="country">Phường/Xã: </label>
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="ward" class="form-control">
-                                            <option value="">Chọn phường xã</option>
-                                            @if ($user->address)
-                                                @foreach (Helpers::getWards($user->address->district->id) as $ward)
-                                                    <option value="{{ $ward->id }}"
-                                                        {{ $ward->id == $user->address->ward->id ? ' selected' : '' }}>
-                                                        {{ $ward->name_with_type }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <p><a href="{{ route('checkout') }}" class="btn btn-primary py-3 px-4">Estimate</a></p>
-                    </div>
-                    <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+                    <div class="col-lg-6 mt-5 cart-wrap ftco-animate">
                         <div class="cart-total mb-3">
                             <h3>Tổng Giỏ Hàng</h3>
                             <p class="d-flex">
                                 <span>Tổng tiền hàng</span>
-                                <span id="subtotal">{{ Helpers::formatCurrency($carts->total) }} VNĐ</span>
+                                <span id="subtotal">{{ Helpers::formatCurrency($carts->total) }}</span>
                             </p>
-                            <p class="d-flex">
+                            {{-- <p class="d-flex">
                                 <span>Phí vận chuyển</span>
                                 <span>0 VNĐ</span>
-                            </p>
+                            </p> --}}
                             <p class="d-flex">
-                                <span>Mã giảm giá</span>
-                                <span>0 VNĐ</span>
+                                <span>Giảm giá</span>
+                                <span id='discount-price'>
+                                    {{ Helpers::formatCurrency($discount_money) }}
+                                </span>
                             </p>
                             <hr>
                             <p class="d-flex total-price">
                                 <span>Tổng số tiền</span>
-                                <span id="total-price">{{ Helpers::formatCurrency($carts->total) }} VNĐ</span>
+                                <span
+                                    id="total-price">{{ Helpers::formatCurrency($carts->total - $discount_money) }}</span>
                             </p>
                         </div>
                         <p><a href="{{ route('checkout') }}" class="btn btn-primary py-3 px-4">Thanh Toán</a></p>
