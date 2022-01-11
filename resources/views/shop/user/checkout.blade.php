@@ -1,5 +1,5 @@
 @extends('shop.layouts.app')
-@section('title', 'Liên hệ')
+@section('title', 'Thanh toán')
 
 @section('content')
     <div class="hero-wrap hero-bread" style="background-image: url('{{ asset('shop/images/bg_1.jpg') }}');">
@@ -145,7 +145,7 @@
                                             </div>
                                             <span
                                                 class="text-muted">{{ Helpers::formatCurrency($item->quantity * $item->product->price) }}
-                                                VNĐ</span>
+                                            </span>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -153,20 +153,20 @@
                                 <div class="ml-2">
                                     <p class="d-flex">
                                         <span>Tổng tiền hàng</span>
-                                        <span id="subtotal">{{ Helpers::formatCurrency($carts->total) }} VNĐ</span>
+                                        <span id="subtotal">{{ Helpers::formatCurrency($carts->total) }}</span>
                                     </p>
                                     <p class="d-flex">
                                         <span>Phí vận chuyển</span>
-                                        <span>0 VNĐ</span>
+                                        <span>0đ</span>
                                     </p>
                                     <p class="d-flex">
-                                        <span>Mã giảm giá</span>
-                                        <span>0 VNĐ</span>
+                                        <span>Giảm giá</span>
+                                        <span>{{ Helpers::formatCurrency($discount_money) }}</span>
                                     </p>
                                     <hr>
                                     <p class="d-flex total-price">
                                         <span>Tổng số tiền</span>
-                                        <span>{{ Helpers::formatCurrency($carts->total) }} VNĐ</span>
+                                        <span>{{ Helpers::formatCurrency($carts->total - $discount_money) }}</span>
                                     </p>
                                     <p>
                                         <a href="javascript:void(0)" id="order" class="btn btn-primary py-3 px-4">Thanh
