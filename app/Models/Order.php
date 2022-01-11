@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
     use HasFactory;
     protected $table = 'orders';
-    protected $fillable = ['firstname', 'lastname', 'address', 'telephone', 'email', 'note', 'total', 'status'];
+    protected $fillable = ['firstname', 'lastname', 'address', 'telephone', 'email', 'note', 'discount', 'total', 'status'];
     protected $appends = ['fullname'];
 
     public function items()
@@ -34,5 +35,10 @@ class Order extends Model
             return $data;
         }
         return 0;
+    }
+
+    public static function getListOrdered()
+    {
+        return Order::where('user_id', Auth::id())->orderBy('id', 'DESC')->paginate(12);
     }
 }
