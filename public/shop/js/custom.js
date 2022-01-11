@@ -12,6 +12,12 @@ const notyf = new Notyf({
     duration: 3000,
 });
 
+const formatCurrency = (price) =>
+    new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+    }).format(price);
+
 function addCart(id) {
     const cart_count = $("#cart_count");
     const regex = /^\/product\/.*$/g;
@@ -31,7 +37,6 @@ function addCart(id) {
         },
         url: `${window.location.origin}/cart/${id}`,
         success: function (response) {
-            console.log(response);
             const { count, isUpdate } = response;
             if (isUpdate) {
                 cart_count.html(
@@ -60,7 +65,6 @@ function addCart(id) {
                 message: "Có lỗi xảy ra!",
                 duration: 3000,
             });
-            console.log(error);
         },
     });
 }
@@ -89,34 +93,17 @@ function updateCart(event, id) {
             type: "put",
             url: `${window.location.origin}/cart/${id}`,
             success: function (response) {
-                console.log(response);
-                const { total_item, total } = response;
+                const { total_item, total, discount_money } = response;
                 const total_price_item = $(`[data-price="${id}"]`);
 
-                total_price_item.text(
-                    total_item.toLocaleString("it-IT", {
-                        style: "currency",
-                        currency: "VND",
-                    })
-                );
+                total_price_item.text(formatCurrency(total_item));
 
                 const subtotal_price = $("#subtotal");
-                subtotal_price.text(
-                    total.toString().toLocaleString("it-IT", {
-                        style: "currency",
-                        currency: "VND",
-                    })
-                );
+                subtotal_price.text(formatCurrency(total));
 
                 const total_price = $("#total-price");
-                total_price.text(
-                    total
-                        ? total.toLocaleString("it-IT", {
-                              style: "currency",
-                              currency: "VND",
-                          })
-                        : "0 VND"
-                );
+                total_price.text(formatCurrency(total - discount_money));
+                $("#discount-price").text(formatCurrency(discount_money));
 
                 notyf.open({
                     type: "info",
@@ -156,7 +143,7 @@ function removeCart(id) {
         type: "delete",
         url: `${window.location.origin}/cart/${id}`,
         success: function (response) {
-            const { total } = response;
+            const { total, discount_money } = response;
             let count = parseInt(cart_count.text().replace(/[^0-9]/g, "_"));
             count = count > 1 ? count - 1 : 0;
             row.fadeOut(400, function () {
@@ -166,25 +153,12 @@ function removeCart(id) {
                 `<span class="icon-shopping_cart"></span>[${count}]`
             );
             const subtotal_price = $("#subtotal");
-            subtotal_price.text(
-                total
-                    ? total.toLocaleString("it-IT", {
-                          style: "currency",
-                          currency: "VNĐ",
-                      })
-                    : "0 VND"
-            );
+            subtotal_price.text(formatCurrency(total));
 
             const total_price = $("#total-price");
-            total_price.text(
-                total
-                    ? total.toLocaleString("it-IT", {
-                          style: "currency",
-                          currency: "VNĐ",
-                      })
-                    : "0 VND"
-            );
+            total_price.text(formatCurrency(total - discount_money));
 
+            $("#discount-price").text(formatCurrency(discount_money));
             notyf.open({
                 type: "info",
                 message: "Cập nhật giỏ hàng thành công!",
@@ -315,22 +289,21 @@ $("#order").click(function () {
         data,
         url: `${window.location.origin}/order`,
         success: function (data) {
-            notyf.open({
-                type: "info",
-                message: "Đặt hàng thành công",
-                duration: 3000,
-            });
-
-            setTimeout(function () {
-                window.location.href = `${window.location.origin}/cart`;
-            }, 4000);
+            window.location.href = `${window.location.origin}/order-success`;
         },
         error: function (error) {
             if (error.status === 401) {
                 window.location.href = "/login";
                 return;
             }
-            if (error.message == "cart-empty") {
+            if (error.responseJSON.type == "empty-form") {
+                notyf.open({
+                    type: "error",
+                    message: error.responseJSON.message,
+                    duration: 3000,
+                });
+            }
+            if (error.responseJSON.type == "cart-empty") {
                 notyf.open({
                     type: "error",
                     message: "Giỏ hàng trống",
@@ -347,4 +320,22 @@ $("#order").click(function () {
             });
         },
     });
+});
+
+$("#coupon-input").focus(function () {
+    $("#coupon-msg").hide("slow", function () {
+        $("#coupon-msg").remove();
+    });
+});
+
+$("#inputAvatar").change(function () {
+    if ($(this).val() == "") {
+        $("#btn-avatar").attr("disabled", true);
+    } else {
+        $("#btn-avatar").attr("disabled", false);
+    }
+});
+$("input, select, textarea").focus(function () {
+    const msg = $(this).nextAll(".text-danger");
+    msg.hide("slow", function () {});
 });
