@@ -7,8 +7,8 @@
                     {{ csrf_field() }}
                     {{ $slot }}
                     <div class="form-group mb-3">
-                        <button type="reset" class="btn btn-warning">Xoá</button>
                         <button class="btn btn-success" type="submit">Tạo</button>
+                        <button type="reset" class="btn btn-warning">Xoá</button>
                     </div>
                 </form>
             </div>
