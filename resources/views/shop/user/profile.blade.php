@@ -2,199 +2,199 @@
 @section('title', 'Thông tin tài khoản')
 
 @section('content')
-    <div class="container">
+    <div class="container my-4">
         <div class="row">
-            <div class="col-md-10 mx-auto">
-                <div class="row">
-                    <div class="col mt-3 mb-3">
-                        <div class="card">
-                            <div class="card-header cart-empty">
-                                <h3 class="mb-0">Thông tin tài khoản</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="e-profile">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-auto mb-3">
-                                            <div class="mx-auto" style="width: 140px;">
-                                                <img class="d-flex img-fluid justify-content-center align-items-center rounded"
-                                                    src="{{ $user->avatar ? $user->avatar :  asset('/images/default-avatar.png') }}" />
-                                            </div>
-                                        </div>
-                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap" style="color:#000000">
-                                                    {{ $user->fullname }}</h4>
-                                                <p class="mb-0">{{ $user->email }}</p>
-                                                <div class="mt-2">
-                                                    <button class="btn btn-primary" type="button">
-                                                        <i class="fa fa-fw fa-camera"></i>
-                                                        <input type="file" class="btn-change-photo position-absolute ">Chọn
-                                                        ảnh
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-sm-right">
-                                                <span class="badge badge-secondary">{{ $user->role }}</span>
-                                                <div class="text-muted">
-                                                    <small>{{ date('d/m/Y', strtotime($user->created_at)) }}</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="nav nav-tabs">
-                                        <li class="nav-item"><a href="" class="active nav-link">Cài Đặt</a></li>
-                                    </ul>
-                                    <div class="tab-content pt-3">
-                                        <div class="tab-pane active">
-                                            <form class="form" novalidate="">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Họ: </label>
-                                                                    <input class="form-control" type="text" name="name"
-                                                                        placeholder="{{ $user->lastname }}"
-                                                                        value="{{ $user->lastname }}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Tên: </label>
-                                                                    <input class="form-control" type="text"
-                                                                        name="username"
-                                                                        placeholder="{{ $user->firstname }}"
-                                                                        value="{{ $user->firstname }}">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Email</label>
-                                                                    <input class="form-control" type="text"
-                                                                        placeholder="{{ $user->email }}">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col mb-3">
-                                                                <div class="form-group">
-                                                                    <label>Số điện thoại</label>
-                                                                    <input class="form-control" type="text"
-                                                                        placeholder="{{ $user->telephone }}">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col mb-3">
-                                                                <div class="form-group">
-                                                                    <label>Chi tiết địa chỉ:</label>
-                                                                    <input class="form-control" type="text"
-                                                                        placeholder="{{ $user->address->address }}">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12 col-sm-6 mb-3">
-                                                        <div class="mb-2"><b>Đổi mật khẩu</b></div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Mật khẩu hiện tại</label>
-                                                                    <input class="form-control" type="password"
-                                                                        placeholder="••••••">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Mật khẩu mới</label>
-                                                                    <input class="form-control" type="password"
-                                                                        placeholder="••••••">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Xác nhận mật khẩu <span
-                                                                            class="d-none d-xl-inline">Mật
-                                                                            khẩu</span></label>
-                                                                    <input class="form-control" type="password"
-                                                                        placeholder="••••••">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6 mb-3">
-                                                        <div class="mb-2"><b>Địa chỉ</b></div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <label for="country">Tỉnh: </label>
-                                                                <select name="province" id="province"
-                                                                    class="form-control mb-3">
-                                                                    <option value="">Chọn tỉnh</option>
-                                                                    @foreach (Helpers::getAllProvince() as $province)
-                                                                        <option value="{{ $province->id }}"
-                                                                            {{ $province->id == $user->address->province->id ? ' selected' : '' }}>
-                                                                            {{ $province->name_with_type }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <label for="country">Thành phố/Quận: </label>
-                                                                <select name="district" id="district"
-                                                                    class="form-control mb-3">
-                                                                    <option value="">Chọn thành phố/quận</option>
-                                                                    @if ($user->address)
-                                                                        @foreach (Helpers::getDistricts($user->address->province->id) as $district)
-                                                                            <option value="{{ $district->id }}"
-                                                                                {{ $district->id == $user->address->district->id ? ' selected="selected"' : '' }}>
-                                                                                {{ $district->name_with_type }}</option>
-                                                                        @endforeach
-                                                                    @endif
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <label for="country">Phường/Xã: </label>
-                                                                <select name="ward" id="ward" class="form-control">
-                                                                    <option value="">Chọn phường xã</option>
-                                                                    @if ($user->address)
-                                                                        @foreach (Helpers::getWards($user->address->district->id) as $ward)
-                                                                            <option value="{{ $ward->id }}"
-                                                                                {{ $ward->id == $user->address->ward->id ? ' selected' : '' }}>
-                                                                                {{ $ward->name_with_type }}</option>
-                                                                        @endforeach
-                                                                    @endif
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col d-flex justify-content-end">
-                                            <button class="btn btn-primary" type="submit">Cập nhật</button>
-                                        </div>
-                                    </div>
-                                    </form>
-
+            <div class="col-md-3 ">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <form method="post" action="{{ route('update-profile-avatar') }}"
+                                enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <label for="inputAvatar">
+                                    <img id="imgReview" src="       @if (File::exists($user->avatar))
+                                    {{ asset($user->avatar) }}
+                                @else
+                                    {{ $user->avatar }}
+                                    @endif" alt="Avatar" class="rounded-circle"
+                                    width="150">
+                                </label>
+                                <input id="inputAvatar" type="file" name="avatar" style="display: none"
+                                    oninput="imgReview.src=window.URL.createObjectURL(this.files[0])" />
+                                <div class="mt-3">
+                                    <h4></h4>
+                                    <p class="text-muted font-size-sm"></p>
+                                    <button id='btn-avatar' class="btn btn-outline-success" type="submit" disabled>Đổi Ảnh
+                                        Đại Diện</button>
                                 </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group ">
+                    @if (Auth::user()->role == 'admin')
+                        <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-action">Dashboard</a>
+                    @endif
+                    <a href="{{ route('list-ordered') }}" class="list-group-item list-group-item-action">Đơn đặt hàng</a>
+                    <a href="{{ route('cart') }}" class="list-group-item list-group-item-action">Giỏ hàng</a>
+                    <a href="{{ route('profile') }}" class="list-group-item list-group-item-action">Thông tin tài
+                        khoản</a>
+                    <a href="{{ route('change-password-profile') }}" class="list-group-item list-group-item-action">Đổi
+                        mật khẩu</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            @error('avatar')
+                                <div class="col-lg-12 mx-auto">
+                                    <div class="alert alert-danger alert-dismissable fade show">
+                                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                        {{ $message }}
+                                    </div>
+                                </div>
+                            @enderror
+                            @if (session('success'))
+                                <div class="col-lg-12 mx-auto">
+                                    <div class="alert alert-success alert-dismissable fade show">
+                                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                        {{ session('success') }}
+                                    </div>
+                                </div>
+                            @endif
+                            @if (session('error'))
+                                <div class="col-lg-12 mx-auto">
+                                    <div class="alert alert-danger alert-dismissable fade show">
+                                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                        {{ session('error') }}
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-12 mb-4">
+                                <h4 style='color: #000!important'>Thông Tin Tài Khoản</h4>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form method="post" action="{{ route('update-profile') }}">
+                                    {{ csrf_field() }}
+                                    <div class="form-group row">
+                                        <label for="name" class="col-4 col-form-label">Họ</label>
+                                        <div class="col-8">
+                                            <input id="lastname" name="lastname" placeholder="Họ" class="form-control here"
+                                                type="text" value="{{ Auth::user()->lastname }}">
+                                            @error('lastname')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="lastname" class="col-4 col-form-label">Tên</label>
+                                        <div class="col-8">
+                                            <input id="firstname" name="firstname" placeholder="Tên"
+                                                class="form-control here" type="text"
+                                                value="{{ Auth::user()->firstname }}">
+                                            @error('firstname')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email" class="col-4 col-form-label">Email</label>
+                                        <div class="col-8">
+                                            <input id="email" name="email" placeholder="Nhập email"
+                                                class="form-control here" required="required" type="email"
+                                                value="{{ Auth::user()->email }}">
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="telephone" class="col-4 col-form-label">Số điện thoại</label>
+                                        <div class="col-8">
+                                            <input id="telephone" name="telephone" placeholder="Nhập số điện thoại"
+                                                class="form-control here" required="required" type="text"
+                                                value="{{ Auth::user()->telephone }}">
+                                            @error('telephone')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputAddress" class="col-4 col-form-label">Địa chỉ</label>
+                                        <div class="col-8">
+                                            <input id="inputAddress" name="address" placeholder="Nhập địa chỉ"
+                                                class="form-control here" required="required" type="text"
+                                                value="{{ Auth::user()->address->address }}">
+                                            @error('address')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="province" class="col-4 col-form-label">Tỉnh:</label>
+                                        <div class="col-8">
+                                            <select name="province" id="province" class="form-control w-100">
+                                                @foreach (Helpers::getAllProvince() as $province)
+                                                    <option value="{{ $province->id }}"
+                                                        {{ Auth::user()->address && Auth::user()->address->province->id == $province->id ? ' selected' : '' }}>
+                                                        {{ $province->name_with_type }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('province')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label or="district" class="col-4 col-form-label">Thành phố/quận:</label>
+                                        <div class="col-8">
+                                            <select name="district" id="district" class="form-control w-100">
+                                                @if (Auth::user()->address)
+                                                    @foreach (Helpers::getDistricts(Auth::user()->address->province->id) as $district)
+                                                        <option value="{{ $district->id }}"
+                                                            {{ $district->id == Auth::user()->address->district->id ? ' selected="selected"' : '' }}>
+                                                            {{ $district->name_with_type }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                            @error('district')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="ward" class="col-4 col-form-label">Phường/Xã:</label>
+                                        <div class="col-8">
+                                            <select name="ward" id="ward" class="form-control w-100">
+                                                @if (Auth::user()->address)
+                                                    @foreach (Helpers::getWards(Auth::user()->address->district->id) as $ward)
+                                                        <option value="{{ $ward->id }}"
+                                                            {{ $ward->id == Auth::user()->address->ward->id ? ' selected' : '' }}>
+                                                            {{ $ward->name_with_type }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                            @error('ward')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-4 col-8">
+                                            <button name="submit" type="submit" class="btn btn-primary px-4 py-2">Cập
+                                                Nhật</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
