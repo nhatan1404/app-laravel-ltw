@@ -33,6 +33,7 @@ Route::get('/posts/{slug}', 'HomeController@postsDetail')->name('posts-detail');
 Route::get('/posts-category/{slug}', 'HomeController@postsByCategory')->name('posts-by-category');
 
 // Shoping
+Route::post('/apply-coupon', 'HomeController@applyCoupon')->name('apply-coupon')->middleware('auth');
 Route::get('/cart', 'CartController@getListCart')->name('cart')->middleware('auth');
 Route::get('/cart/{id}', 'CartController@addToCart')->name('add-cart')->middleware('auth');
 Route::put('/cart/{id}', 'CartController@updateCart')->name('update-cart')->middleware('auth');
