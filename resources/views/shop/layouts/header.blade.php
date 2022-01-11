@@ -26,8 +26,8 @@
                     </a>
                 </li>
                 <li class="nav-item cta cta-colored dropdown">
-                    <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><span
+                    <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><span
                             class="icon-user mr-2"></span>{{ Auth::check() ? Auth::user()->fullname : 'Tài khoản' }}</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         @guest
@@ -37,9 +37,10 @@
                             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'employee')
                                 <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                             @endif
-                            <a class="dropdown-item" href="{{ route('profile', Auth::id()) }}">Thông tin</a>
+                            <a class="dropdown-item" href="{{ route('profile') }}">Thông tin</a>
+                            <a class="dropdown-item" href="{{ route('list-ordered') }}">Đơn Hàng</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"> Đăng xuất
+                                                document.getElementById('logout-form').submit();"> Đăng xuất
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
