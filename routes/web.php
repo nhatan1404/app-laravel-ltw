@@ -39,6 +39,9 @@ Route::put('/cart/{id}', 'CartController@updateCart')->name('update-cart')->midd
 Route::delete('/cart/{id}', 'CartController@removeCart')->name('remove-cart')->middleware('auth', 'throttle:30,1');
 Route::get('/checkout', 'HomeController@checkout')->name('checkout')->middleware('auth');
 Route::post('/order', 'HomeController@order')->name('order')->middleware('auth');
+Route::get('/order', 'HomeController@getOrderList')->name('list-ordered')->middleware('auth');
+Route::get('/order-success', 'HomeController@orderSuccess')->name('order-success')->middleware('auth');
+Route::get('/order/{id}', 'HomeController@getDetailOrder')->name('detail-ordered')->middleware('auth');
 
 // Address
 Route::get('/address/provinces', 'AddressController@getProvinces')->name('get-provinces')->middleware('auth');
@@ -51,7 +54,12 @@ Route::post('/user/login', 'Auth\LoginController@login');
 Route::post('/user/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('user/register', 'HomeController@register')->name('user-register');
 Route::post('user/register', 'Auth\RegisterController@register');
-Route::get('/profile/{id}', 'HomeController@profile')->name('profile');
+Route::get('/profile', 'HomeController@profile')->name('profile')->middleware('auth');
+Route::get('/profile/change-password', 'HomeController@changePassword')->name('change-password-profile')->middleware('auth');
+Route::post('/profile/update', 'HomeController@updateProfile')->name('update-profile')->middleware('auth');
+Route::post('/profile/update-password', 'HomeController@updatePassword')->name('update-profile-password')->middleware('auth');
+Route::post('/profile/update-avatar', 'HomeController@updateAvatar')->name('update-profile-avatar')->middleware('auth');
+
 
 // Auth
 Auth::routes();
