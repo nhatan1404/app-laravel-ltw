@@ -107,7 +107,8 @@ class HomeController extends Controller
             $children_id = Category::getChildrenIds($category->id);
             $products = Product::whereIn('category_id', $children_id)->orderBy($orderBy[0], $orderBy[1])->where('status', 'active')->paginate($paginate);
         }
-        return view('shop.product.index', compact('products', 'category', 'paginate', 'sort'));
+        $parent_category = $category->parent;
+        return view('shop.product.index', compact('products', 'category', 'parent_category', 'paginate', 'sort'));
     }
 
     public function postsList()
@@ -235,6 +236,15 @@ class HomeController extends Controller
             $request->session()->put('order-success', true);
             return response()->json(['message' => 'Successful'], 200);
         }
+    }
+
+    public function orderSuccess(Request $request)
+    {
+        if ($request->session()->has('order-success')) {
+            $request->session()->forget('order-success');
+            return view('shop.order.success');
+        }
+        return redirect()->route('list-ordered');
     }
 
     public function getOrderList()
