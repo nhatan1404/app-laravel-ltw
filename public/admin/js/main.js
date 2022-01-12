@@ -49,7 +49,7 @@ $("#inputProvince").change(function () {
 
             districts.forEach((district) => {
                 districtSelect.append(
-                    `<option value="${district.id}">${district.name}</option>`
+                    `<option value="${district.id}">${district.name_with_type}</option>`
                 );
             });
         },
