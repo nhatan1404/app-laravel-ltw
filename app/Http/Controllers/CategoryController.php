@@ -38,18 +38,31 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'title.required' => 'Tiêu đề không được bỏ trống',
+            'title.string' => 'Tiêu đề phải là chuỗi kí tự',
+            'title.max' => 'Tiêu đề không được lớn hơn 100 kí tự',
+            'description.string' => 'Mô tả phải là chuỗi kí tự',
+            'description.max' => 'Mô tả không được lớn hơn 200 kí tự',
+            'parent_id.exists' => 'Danh mục cha không tồn tại',
+        ];
+
         $this->validate($request, [
-            'title' => 'string|required',
-            'description' => 'string|nullable',
+            'title' => 'required|string|max:100',
+            'description' => 'nullable|string|max:200',
             'parent_id' => 'nullable|exists:categories,id',
-        ]);
+        ], $messages);
+
         $data = $request->all();
+
         if ($data['description'] == null) {
             $data['description'] = 'Không có...';
         }
+
         $slug = Str::slug($request->title);
         $data['slug'] = $slug;
         $status = Category::create($data);
+
         if ($status) {
             request()->session()->flash('success', 'Tạo danh mục thành công.');
         } else {
@@ -66,7 +79,12 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::find($id);
+
+        if ($category == null) {
+            return abort(404, 'Danh mục không tồn tại');
+        }
+
         return view('admin.category.detail', compact('category'));
     }
 
@@ -78,8 +96,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $category = Category::find($id);
+
+        if ($category == null) {
+            return abort(404, 'Danh mục không tồn tại');
+        }
+
         $parent_categories = Category::whereNull('parent_id')->orderBy('title', 'ASC')->get();
-        $category = Category::findOrFail($id);
         return view('admin.category.edit', compact('category', 'parent_categories'));
     }
 
@@ -92,17 +115,35 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::find($id);
+
+        if ($category == null) {
+            return abort(404, 'Danh mục không tồn tại');
+        }
+
+        $messages = [
+            'title.required' => 'Tiêu đề không được bỏ trống',
+            'title.string' => 'Tiêu đề phải là chuỗi kí tự',
+            'title.max' => 'Tiêu đề không được lớn hơn 100 kí tự',
+            'description.string' => 'Mô tả phải là chuỗi kí tự',
+            'description.max' => 'Mô tả không được lớn hơn 200 kí tự',
+            'parent_id.exists' => 'Danh mục cha không tồn tại',
+        ];
+
         $this->validate($request, [
-            'title' => 'string|required',
-            'description' => 'string|nullable',
+            'title' => 'required|string|max:100',
+            'description' => 'nullable|string|max:200',
             'parent_id' => 'nullable|exists:categories,id',
-        ]);
+        ], $messages);
+
         $data = $request->all();
+
         if ($data['description'] == null) {
             $data['description'] = 'Không có...';
         }
+
         $status = $category->fill($data)->save();
+
         if ($status) {
             request()->session()->flash('success', 'Cập nhật thành công.');
         } else {
@@ -119,9 +160,15 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::find($id);
+
+        if ($category == null) {
+            return abort(404, 'Danh mục không tồn tại');
+        }
+
         $child_category = Category::where('parent_id', $id)->pluck('id');
         $status = $category->delete();
+
         if ($status) {
             if (count($child_category) > 0) {
                 Category::whereIn('id', $child_category)->update(['parent_id' => null]);
