@@ -77,7 +77,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if ($category == null) {
-            return abort(404, 'Danh mục không tồn tại');
+            return abort(404, 'Danh mục sản phẩm không tồn tại');
         }
 
         return view('admin.category.detail', compact('category'));
@@ -94,7 +94,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if ($category == null) {
-            return abort(404, 'Danh mục không tồn tại');
+            return abort(404, 'Danh mục sản phẩm không tồn tại');
         }
 
         $parent_categories = Category::whereNull('parent_id')->orderBy('title', 'ASC')->get();
@@ -113,7 +113,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if ($category == null) {
-            return abort(404, 'Danh mục không tồn tại');
+            return abort(404, 'Danh mục sản phẩm không tồn tại');
         }
 
         $messages = [
@@ -153,7 +153,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if ($category == null) {
-            return abort(404, 'Danh mục không tồn tại');
+            return abort(404, 'Danh mục sản phẩm không tồn tại');
         }
 
         $child_category = Category::where('parent_id', $id)->pluck('id');

@@ -2,7 +2,7 @@
 @section('title', 'Sửa Danh Mục Sản Phẩm')
 
 @section('content')
-    <x-Admin.Form.Edit name="Danh Mục" route="category.update" :id="$category->id">
+    <x-Admin.Form.Edit name="Danh Mục Sản Phẩm" route="category.update" :id="$category->id">
         <x-Admin.Form.Input name="Tiêu đề" property="title" placeholder="Nhập tiêu đề" value="{{ $category->title }}" />
 
         <x-Admin.Form.Textarea name="Mô tả" property="description" placeholder="Nhập mô tả"
