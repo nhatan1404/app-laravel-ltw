@@ -135,4 +135,19 @@ class Helpers
     }
     return $discount_money;
   }
+
+  public function getRoleValue($role)
+  {
+    $roles = [
+      'admin' => 'Admin',
+      'employee' => 'Nhân viên',
+      'customer' => 'Khách hàng'
+    ];
+
+    if (!array_key_exists($role, $roles)) {
+      return '';
+    }
+
+    return $roles[$role];
+  }
 }
