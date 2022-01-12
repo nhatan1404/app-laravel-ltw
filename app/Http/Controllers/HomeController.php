@@ -89,9 +89,11 @@ class HomeController extends Controller
     public function productDetail($slug)
     {
         $product = Product::getBySlug($slug);
-        if (!$product) {
-            return abort(404);
+
+        if ($product == null) {
+            return abort(404, 'Sản phẩm không tồn tại');
         }
+
         $related_products = Category::find($product->category_id)->products->take(4);
         return view('shop.product.detail', compact('product', 'related_products'));
     }
@@ -102,6 +104,11 @@ class HomeController extends Controller
         $sort = $request->sort ?? 'new';
         $orderBy = $this->orderBy($sort);
         $category = Category::getBySlug($slug);
+
+        if ($category == null) {
+            return abort(404, 'Danh mục sản phẩm không tồn tại');
+        }
+
         $products = $category->products()->orderBy($orderBy[0], $orderBy[1])->where('status', 'active')->paginate($paginate);
         if ($category->parent == null) {
             $children_id = Category::getChildrenIds($category->id);
@@ -122,6 +129,11 @@ class HomeController extends Controller
     public function postsDetail($slug)
     {
         $post = Posts::getBySlug($slug);
+
+        if ($post == null) {
+            return abort(404, 'Bài viết không tồn tại');
+        }
+
         $recent_posts = PostsCategory::find($post->category_id)->posts->take(3);
         $categories =  PostsCategory::getParentCategories();
         return view('shop.posts.detail', compact('post', 'recent_posts', 'categories'));
@@ -130,6 +142,11 @@ class HomeController extends Controller
     public function postsByCategory($slug)
     {
         $category = PostsCategory::getBySlug($slug);
+
+        if ($category == null) {
+            return abort(404, 'Danh mục bài viết không tồn tại');
+        }
+
         $posts = $category->posts()->paginate(5);
         $recent_posts = Posts::all()->random(3);
         $categories = PostsCategory::getParentCategories();
@@ -155,15 +172,18 @@ class HomeController extends Controller
     public function checkout()
     {
         $carts = Cart::getCart();
+
         if (!$carts || $carts->count == 0) {
             return redirect()->route('home');
         }
+
         if (session('coupon')) {
             $coupon = Voucher::find(session('coupon')['id']);
             if ($coupon && $coupon->time == 0) {
                 session()->forget('coupon');
             }
         }
+
         $user = Auth::user();
         $provinces = Province::get();
         $discount_money = Helpers::getDiscountMoney($carts->total);
