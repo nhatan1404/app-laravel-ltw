@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Chi tiết Danh Mục Bài Viết')
+@section('title', 'Chi Tiết Danh Mục Bài Viết')
 
 @section('content')
     <div class="container-fluid">
@@ -32,6 +32,12 @@
                                     <td>Đường dẫn</td>
                                     <td>{{ $posts_category->slug }}</td>
                                 </tr>
+
+                                <tr>
+                                    <td>Mô tả</td>
+                                    <td>{!! $posts_category->description == null || $posts_category->description == '' ? '...' : $posts_category->description !!}</td>
+                                </tr>
+
                                 <tr>
                                     <td>Danh Mục Cha</td>
                                     <td>{{ $posts_category->parent ? $posts_category->parent->title : 'Không có' }}</td>

@@ -15,7 +15,7 @@
             @foreach ($categories as $parent)
                 <optgroup label="{{ $parent->title }}">
                     @foreach ($parent->children as $children)
-                        <option value="{{ $children->id }}">
+                        <option value="{{ $children->id }}" {{ old('category_id') == $children->id ? 'selected' : '' }}>
                             {{ $children->title }}
                         </option>
                     @endforeach
@@ -30,17 +30,16 @@
             @endforeach
         </x-Admin.Form.Select>
 
-        <x-Admin.Form.InputImage name="Thumbnail" property="thumbnail" />
+        <x-Admin.Form.InputImage name="Thumbnail" property="thumbnail" :value="old('thumbnail')" />
 
         <x-Admin.Form.Select name="Trạng thái" property="status">
-            <option value="active">Hiển thị</option>
-            <option value="inactive">Ẩn</option>
+            <option value="active" {{ old('status' == 'active' ? 'selected' : '') }}>Hiển thị</option>
+            <option value="inactive" {{ old('status' == 'inactive' ? 'selected' : '') }}>Ẩn</option>
         </x-Admin.Form.Select>
     </x-Admin.Form.Create>
 @endsection
 
 @push('scripts')
-    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
     <script>
         $('#lfm').filemanager();
     </script>

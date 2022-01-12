@@ -42,20 +42,18 @@
                 <x-Admin.Form.Select name="Chức vụ" property="role">
                     @foreach ($roles as $role)
                         <option value="{{ $role }}" {{ $user->role == $role ? 'selected' : '' }}>
-                            {{ ucwords($role) }}</option>
+                            {{ Helpers::getRoleValue($role) }}</option>
                     @endforeach
                 </x-Admin.Form.Select>
             </div>
             <div class="col">
                 <x-Admin.Form.Select name="Trạng thái" property="status">
-                    @foreach ($roles as $role)
-                        <option value="active" {{ $user->status == 'active' ? 'selected' : '' }}>Hoạt động</option>
-                        <option value="inactive" {{ $user->status == 'inactive' ? 'selected' : '' }}>Không hoạt động
-                        </option>
-                    @endforeach
+                    <option value="active" {{ $user->status == 'active' ? 'selected' : '' }}>Hoạt động</option>
+                    <option value="inactive" {{ $user->status == 'inactive' ? 'selected' : '' }}>Khoá</option>
                 </x-Admin.Form.Select>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
                 <x-Admin.Form.Input name="Địa chỉ" property="address" type="text" placeholder="Nhập địa chỉ"
@@ -71,13 +69,14 @@
                 </x-Admin.Form.Select>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
                 <x-Admin.Form.Select name="Thành phố/quận" property="district">
                     @if ($user->address)
                         @foreach (Helpers::getDistricts($user->address->province->id) as $district)
                             <option value="{{ $district->id }}"
-                                {{ $district->id == $user->address->district->id ? ' selected="selected"' : '' }}>
+                                {{ $district->id == $user->address->district->id ? ' selected' : '' }}>
                                 {{ $district->name_with_type }}</option>
                         @endforeach
                     @endif
@@ -99,8 +98,6 @@
 @endsection
 
 @push('scripts')
-    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-    <script src="{{ asset('admin/js/main.js') }}"></script>
     <script>
         $('#lfm').filemanager();
     </script>

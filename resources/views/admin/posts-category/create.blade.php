@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('title', 'Tạo Danh Mục Bài Viết')
+
 @section('content')
     <x-Admin.Form.Create name='Danh Mục Bài Viết' route='posts-category.store'>
         <x-Admin.Form.Input name="Tiêu đề" property="title" placeholder="Nhập tiêu đề" value="{{ old('title') }}" />
@@ -9,7 +10,9 @@
 
         <x-Admin.Form.Select name="Danh mục cha" property="parent_id">
             @foreach ($parent_categories as $key => $parent_category)
-                <option value='{{ $parent_category->id }}'>{{ $parent_category->title }}</option>
+                <option value='{{ $parent_category->id }}'
+                    {{ old('parent_id') == $parent_category->id ? 'selected' : '' }}>{{ $parent_category->title }}
+                </option>
             @endforeach
         </x-Admin.Form.Select>
     </x-Admin.Form.Create>

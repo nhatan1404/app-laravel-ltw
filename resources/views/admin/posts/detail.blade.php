@@ -44,9 +44,9 @@
 
                                 <tr>
                                     <td>Mô tả</td>
-                                    <td>{{ substr($posts->content, 0, 420) }}<span id='dot'>...</span><span
-                                            id="content_readmore">{{ substr($posts->content, 420, strlen($posts->content)) }}</span><a
-                                            id="readmore">Xem thêm</a></td>
+                                    <td>{!! substr($posts->content, 0, 420) !!}<span id='dot'>...</span><span
+                                            id="content_readmore">{!! substr($posts->content, 420, strlen($posts->content)) !!}</span><a id="readmore">Xem
+                                            thêm</a></td>
                                 </tr>
 
                                 <tr>

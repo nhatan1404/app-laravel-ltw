@@ -40,15 +40,16 @@
         <div class="row">
             <div class="col">
                 <x-Admin.Form.Select name="Chức vụ" property="role">
-                    <option value="admin">Admin</option>
-                    <option value="employee">Nhân Viên</option>
-                    <option value="customer">Khách Hàng</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role }}" {{ old('role') == $role ? 'selected' : '' }}>
+                            {{ Helpers::getRoleValue($role) }}</option>
+                    @endforeach
                 </x-Admin.Form.Select>
             </div>
             <div class="col">
                 <x-Admin.Form.Select name="Trạng thái" property="status">
-                    <option value="active">Hoạt động</option>
-                    <option value="inactive">Không hoạt động</option>
+                    <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Hoạt động</option>
+                    <option value="inactive" {{ old('status') == 'active' ? 'selected' : '' }}>Không hoạt động</option>
                 </x-Admin.Form.Select>
             </div>
         </div>
@@ -60,31 +61,42 @@
             <div class="col mt-2">
                 <x-Admin.Form.Select name="Tỉnh" property="province">
                     @foreach (Helpers::getAllProvince() as $province)
-                        <option value="{{ $province->id }}">
+                        <option value="{{ $province->id }}" {{ old('province') == $province->id ? 'selected' : '' }}>
                             {{ $province->name_with_type }}</option>
                     @endforeach
                 </x-Admin.Form.Select>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
                 <x-Admin.Form.Select name="Thành phố/quận" property="district">
                     <option value="">Chọn thành phố/quận</option>
+                    @if (old('province') && old('district'))
+                        @foreach (Helpers::getDistricts(old('province')) as $district)
+                            <option value="{{ $district->id }}"
+                                {{ $district->id == old('district') ? ' selected' : '' }}>
+                                {{ $district->name_with_type }}</option>
+                        @endforeach
+                    @endif
                 </x-Admin.Form.Select>
             </div>
             <div class="col">
                 <x-Admin.Form.Select name="Phường/Xã" property="ward">
                     <option value="">Chọn phường xã</option>
+                    @if (old('province') && old('district') && old('ward'))
+                        @foreach (Helpers::getWards(old('district')) as $ward)
+                            <option value="{{ $ward->id }}" {{ $ward->id == old('ward') ? ' selected' : '' }}>
+                                {{ $ward->name_with_type }}</option>
+                        @endforeach
+                    @endif
                 </x-Admin.Form.Select>
             </div>
         </div>
-
     </x-Admin.Form.Create>
 @endsection
 
 @push('scripts')
-    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-    <script src="{{ asset('admin/js/main.js') }}"></script>
     <script>
         $('#lfm').filemanager();
     </script>

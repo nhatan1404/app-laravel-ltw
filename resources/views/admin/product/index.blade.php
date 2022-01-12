@@ -55,12 +55,3 @@
     </x-Admin.Table>
     <!-- End Page Content -->
 @endsection
-
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('admin/css/sweetalert2.min.css') }}" />
-@endpush
-
-@push('scripts')
-    <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('admin/js/main.js') }}"></script>
-@endpush

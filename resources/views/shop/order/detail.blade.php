@@ -23,7 +23,7 @@
                                     @endif
                                 </div>
                                 <div class="col"> <strong>Tổng tiền:</strong> <br>
-                                    {{ Helpers::formatCurrency($order->total) }}đ</div>
+                                    {{ Helpers::formatCurrency($order->total) }}</div>
                             </div>
                         </article>
                         <div class="track">
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <hr>
-                        <p class="px-4">Giảm giá: {{ Helpers::formatCurrency($order->discount) }}đ</p>
+                        <p class="px-4">Giảm giá: {{ Helpers::formatCurrency($order->discount) }}</p>
                         <p class="px-4">Địa chỉ giao hàng: {{ $order->address }}</p>
                         <p class="px-4">Ghi chú: {{ $order->note == '' ? 'Không có' : $order->note }}</p>
                         <hr>
@@ -65,7 +65,7 @@
                                         <figcaption class="info align-self-center">
                                             <p class="title">{{ $item->product->title }}</p>
                                             <p class="text-muted mt-1 mb-1">Giá:
-                                                {{ Helpers::formatCurrency($item->product->price * $item->quantity) }}đ</span>
+                                                {{ Helpers::formatCurrency($item->product->price * $item->quantity) }}</span>
                                             <p class="text-muted mt-1 mb-1">Số lượng: {{ $item->quantity }}</span>
                                         </figcaption>
                                     </figure>

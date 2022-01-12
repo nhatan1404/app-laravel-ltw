@@ -56,6 +56,7 @@
 <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script src="{{ asset('admin/js/main.js') }}"></script>
 @stack('scripts')
 

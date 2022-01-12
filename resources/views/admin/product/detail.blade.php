@@ -39,8 +39,8 @@
 
                                 <tr>
                                     <td>Mô tả</td>
-                                    <td>{{ substr($product->description, 0, 420) }}<span id='dot'>...</span><span
-                                            id="content_readmore">{{ substr($product->description, 420, strlen($product->description)) }}</span><a
+                                    <td>{!! substr($product->description, 0, 420) !!}<span id='dot'>...</span><span
+                                            id="content_readmore">{!! substr($product->description, 420, strlen($product->description)) !!}</span><a
                                             id="readmore">Xem thêm</a></td>
                                 </tr>
 

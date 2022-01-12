@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('title', 'Danh Sách Danh Mục Bài Viết')
+
 @section('content')
     @php
     $columns = [
@@ -16,22 +17,15 @@
             <tr>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->title }}</td>
-                <td>{{ $category->description }}</td>
+                <td>{!! $category->description == null || $category->description == '' ? '...' : $category->description !!}
+                </td>
                 <td>{{ $category->slug }}</td>
                 </td>
                 <td>
-                    <x-Admin.ButtonAction :id="$category->id"  show="posts-category.show" edit="posts-category.edit" delete="posts-category.destroy" />
+                    <x-Admin.ButtonAction :id="$category->id" show="posts-category.show" edit="posts-category.edit"
+                        delete="posts-category.destroy" />
                 </td>
             </tr>
         @endforeach
     </x-Admin.Table>
 @endsection
-
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('admin/css/sweetalert2.min.css') }}" />
-@endpush
-
-@push('scripts')
-    <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('admin/js/main.js') }}"></script>
-@endpush
