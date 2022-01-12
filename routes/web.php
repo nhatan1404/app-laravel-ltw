@@ -66,7 +66,7 @@ Route::post('/profile/update-avatar', 'HomeController@updateAvatar')->name('upda
 Auth::routes();
 
 // Dashboard
-Route::group(['prefix' => '/dashboard', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'dashboard.access']], function () {
     Route::get('/', 'DashboardController@index')->name(('dashboard'));
     Route::get('/file-manager', 'DashboardController@fileManager')->name('file-manager');
     Route::resources([
