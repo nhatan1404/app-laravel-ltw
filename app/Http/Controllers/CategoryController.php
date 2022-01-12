@@ -54,11 +54,6 @@ class CategoryController extends Controller
         ], $messages);
 
         $data = $request->all();
-
-        if ($data['description'] == null) {
-            $data['description'] = 'Không có...';
-        }
-
         $slug = Str::slug($request->title);
         $data['slug'] = $slug;
         $status = Category::create($data);
@@ -137,11 +132,6 @@ class CategoryController extends Controller
         ], $messages);
 
         $data = $request->all();
-
-        if ($data['description'] == null) {
-            $data['description'] = 'Không có...';
-        }
-
         $status = $category->fill($data)->save();
 
         if ($status) {
@@ -167,15 +157,24 @@ class CategoryController extends Controller
         }
 
         $child_category = Category::where('parent_id', $id)->pluck('id');
-        $status = $category->delete();
 
-        if ($status) {
-            if (count($child_category) > 0) {
-                Category::whereIn('id', $child_category)->update(['parent_id' => null]);
+        try {
+            $status = $category->delete();
+
+            if ($status) {
+                if (count($child_category) > 0) {
+                    Category::whereIn('id', $child_category)->update(['parent_id' => null]);
+                }
+                request()->session()->flash('success', 'Đã xoá danh mục thành công.');
+            } else {
+                request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
             }
-            request()->session()->flash('success', 'Đã xoá danh mục thành công.');
-        } else {
-            request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            if ((int)$ex->errorInfo[0] === 23000) {
+                request()->session()->flash('error', 'Không thể xoá vì tồn tại ràng buộc khoá ngoại!');
+            } else {
+                request()->session()->flash('error', 'Có lỗi xảy ra, vui lòng thử lại!');
+            }
         }
         return redirect()->route('category.index');
     }
