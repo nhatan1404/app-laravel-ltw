@@ -15,7 +15,7 @@ class AddressController extends Controller
         if ($request->ajax()) {
             return response()->json(['provinces' => $provinces], 200);
         }
-        return response()->json(['error' => 'Error'], 400);
+        return response()->json(['message' => 'Có lỗi xảy ra', 'type' => 'request'], 400);
     }
 
     public function getDistricts(Request $request, $id)
@@ -25,7 +25,7 @@ class AddressController extends Controller
         if ($request->ajax()) {
             return response()->json(['districts' => $districts], 200);
         }
-        return response()->json(['error' => 'Error'], 400);
+        return response()->json(['message' => 'Có lỗi xảy ra', 'type' => 'request'], 400);
     }
 
     public function getWards(Request $request, $id)
@@ -35,6 +35,6 @@ class AddressController extends Controller
         if ($request->ajax()) {
             return response()->json(['wards' => $wards], 200);
         }
-        return response()->json(['error' => 'Error'], 400);
+        return response()->json(['message' => 'Có lỗi xảy ra', 'type' => 'request'], 400);
     }
 }
